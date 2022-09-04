@@ -7,8 +7,8 @@ function IMG({ image, objectFit }) {
   return (
     <Image
       layout="fill"
-      width={width}
-      height={height}
+      // width={width}
+      // height={height}
       objectFit={objectFit || "cover"}
       src={getStrapiMedia(image)}
       alt={alternativeText || ""}

@@ -1,0 +1,31 @@
+@use "./variables" as var;
+@use "./media-config" as media;
+/* ==========================================================================
+   Inner
+   ========================================================================== */
+@mixin inner() {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  margin: 0 auto;
+
+  padding-right: var.$size-inner-padding;
+  padding-left: var.$size-inner-padding;
+
+  vertical-align: baseline;
+
+  @include media.media(mobile) {
+    padding-right: var.$size-inner-padding-medium;
+    padding-left: var.$size-inner-padding-medium;
+  }
+
+  @include media.media(tablet) {
+    padding-right: var.$size-inner-padding-responsive;
+    padding-left: var.$size-inner-padding-responsive;
+  }
+}
+
+.inner {
+  @include inner;
+}
