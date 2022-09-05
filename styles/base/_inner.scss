@@ -1,8 +1,6 @@
-@use "./variables" as var;
-@use "./media-config" as media;
-/* ==========================================================================
-   Inner
-   ========================================================================== */
+@use "./variables" as *;
+@use "./media-config" as *;
+
 @mixin inner() {
   display: flex;
   flex-direction: column;
@@ -10,19 +8,19 @@
   width: 100%;
   margin: 0 auto;
 
-  padding-right: var.$size-inner-padding;
-  padding-left: var.$size-inner-padding;
+  padding-right: $size-inner-padding;
+  padding-left: $size-inner-padding;
 
   vertical-align: baseline;
 
-  @include media.media(mobile) {
-    padding-right: var.$size-inner-padding-medium;
-    padding-left: var.$size-inner-padding-medium;
+  @include media(mobile) {
+    padding-right: $size-inner-padding-medium;
+    padding-left: $size-inner-padding-medium;
   }
 
-  @include media.media(tablet) {
-    padding-right: var.$size-inner-padding-responsive;
-    padding-left: var.$size-inner-padding-responsive;
+  @include media(tablet) {
+    padding-right: $size-inner-padding-responsive;
+    padding-left: $size-inner-padding-responsive;
   }
 }
 

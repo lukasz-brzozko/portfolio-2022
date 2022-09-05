@@ -1,4 +1,5 @@
-// This is as WET as it can get, but unfortunately you can't nest SASS functions so the alternative is to make complex map definitions.
+@use "./variables" as *;
+@use "sass:math";
 
 @function get-map-value($map, $keys...) {
   @each $key in $keys {
@@ -28,10 +29,6 @@
   @return get-map-value($colors, $key);
 }
 
-@function gradient($key) {
-  @return get-map-value($gradients, $key);
-}
-
 @function font-size($key) {
   @return get-map-value($font-sizes, $key);
 }
@@ -47,9 +44,11 @@
 @function default($key) {
   @return get-map-value($defaults, $key);
 }
+
 @function font-weight($key) {
   @return get-map-value($font-weights, $key);
 }
+
 @function line-height($key) {
   @return get-map-value($line-heights, $key);
 }

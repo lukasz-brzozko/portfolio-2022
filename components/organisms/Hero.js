@@ -15,9 +15,11 @@ function Hero({ data }) {
     <section className={b()}>
       <IMG image={img} />
 
-      <div className={b("text-block")}>
-        <span className={b("subtitle")}>{subtitle}</span>
-        <h1 className={b("title")}>{title}</h1>
+      <div className="inner">
+        <div className={b("text-block")}>
+          <span className={b("subtitle")}>{subtitle}</span>
+          <h1 className={`${b("title")} t-typo-h1`}>{title}</h1>
+        </div>
       </div>
     </section>
   );

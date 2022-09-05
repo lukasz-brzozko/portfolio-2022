@@ -1,6 +1,4 @@
-@forward "./base/variables.scss";
-@forward "./base/functions.scss";
-@forward "./base/inner.scss";
+@use "./base";
 
 html,
 body {
