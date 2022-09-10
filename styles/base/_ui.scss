@@ -1,0 +1,13 @@
+@use "./functions" as *;
+
+.ui-highlight {
+  color: color(primary);
+}
+
+.ui-color--t-medium {
+  color: color(t-medium);
+}
+
+.ui-block {
+  display: block;
+}

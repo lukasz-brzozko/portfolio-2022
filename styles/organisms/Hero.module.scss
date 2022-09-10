@@ -1,14 +1,38 @@
+@use "../base/functions" as *;
+@use "../base/mixins" as *;
+@use "../base/media-config" as *;
+
 .hero {
   height: 100vh;
   overflow: hidden;
   position: relative;
+  display: grid;
+  place-items: center;
 
   &__text-block {
     position: relative;
-    color: white;
+    color: color(white);
+
+    grid-column: 1/-1;
+
+    @include media(tablet) {
+      grid-column: 1 / span 6;
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: rv(10);
   }
 
   &__title {
-    color: red;
+    & > * {
+      &:last-child {
+        margin-top: rv(20);
+
+        @include media(tablet) {
+          margin-top: rv(15);
+        }
+      }
+    }
   }
 }

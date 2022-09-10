@@ -16,9 +16,20 @@ function Hero({ data }) {
       <IMG image={img} />
 
       <div className="inner">
-        <div className={b("text-block")}>
-          <span className={b("subtitle")}>{subtitle}</span>
-          <h1 className={`${b("title")} t-typo-h1`}>{title}</h1>
+        <div className="grid">
+          <div className={b("text-block")}>
+            <span
+              className={`${b(
+                "subtitle"
+              )} t-typo-caption ui-block ui-color--t-medium`}
+            >
+              {subtitle}
+            </span>
+            <div
+              dangerouslySetInnerHTML={{ __html: title }}
+              className={`${b("title")} t-typo-h1`}
+            ></div>
+          </div>
         </div>
       </div>
     </section>

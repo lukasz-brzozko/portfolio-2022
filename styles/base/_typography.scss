@@ -1,9 +1,15 @@
 @use "./functions" as *;
-
-@mixin typo-h1 {
-  font-size: rv(20, 100);
-}
+@use "./mixins" as *;
+@use "./media-config" as *;
 
 .t-typo-h1 {
   @include typo-h1();
+}
+
+.t-typo-h2 {
+  @include typo-h2();
+}
+
+.t-typo-caption {
+  @include typo-caption();
 }

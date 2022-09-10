@@ -20,22 +20,9 @@ $orientations: (
 
 $colors: (
   main: #1c1c1c,
-  primary-extra-light: #e0f0f9,
-  primary-light: #00a1f2,
-  primary-dark: #00689c,
-  t-dark: #252728,
-  t-medium-dark: #333,
-  t-medium: #5c5c5c,
-  t-light: #a7a7a7,
-  bg-extra-light: #f7f7f7,
-  bg-light: #ebebeb,
-  bg-medium-light: #e6eae8,
-  bg-medium: #dcdcdc,
-  bg-dark: #2c2c2c,
-  danger: #df2323,
+  primary: #f9004d,
   white: #fff,
-  white-50: rgba(#fff, 0.5),
-  bg-grey: #d3d3d3,
+  t-medium: #cac5be,
 );
 
 $font-sizes: (
@@ -48,6 +35,7 @@ $font-weights: (
   medium: 500,
   semibold: 600,
   bold: 700,
+  black: 900,
 );
 
 $offsets: (
@@ -57,9 +45,9 @@ $offsets: (
 );
 
 $fonts: (
-  main: #{"Rubik",
+  main: #{"Montserrat",
   sans-serif},
-  secondary: "Karla",
+  secondary: "Poppins",
 );
 
 /* Screen width boundings
