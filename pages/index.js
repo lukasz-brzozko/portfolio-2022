@@ -12,6 +12,7 @@ function Home({ homepage }) {
   return (
     <>
       <Hero data={hero} />
+      <div style={{ height: "300vh", backgroundColor: "black" }}></div>
     </>
   );
 }
@@ -19,7 +20,7 @@ function Home({ homepage }) {
 export async function getStaticProps() {
   const homepage = await fetchAPI("/homepage", {
     populate: {
-      hero: { populate: ["imgDesktop", "imgMobile"] },
+      hero: { populate: ["imgDesktop", "imgMobile", "overlay"] },
     },
   });
 
