@@ -1,5 +1,11 @@
 @use "./base" as *;
 
+::selection {
+  color: color(white);
+
+  background-color: color(primary);
+}
+
 html,
 body {
   margin: 0;
