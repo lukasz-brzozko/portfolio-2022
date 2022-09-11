@@ -1,5 +1,10 @@
+import block from "bem-css-modules";
 import Hero from "../components/organisms/Hero";
 import { fetchAPI } from "../lib/api";
+
+block.setSettings({
+  modifierDelimiter: "--",
+});
 
 function Home({ homepage }) {
   const { hero } = homepage.data.attributes;
@@ -14,7 +19,7 @@ function Home({ homepage }) {
 export async function getStaticProps() {
   const homepage = await fetchAPI("/homepage", {
     populate: {
-      hero: { populate: "img" },
+      hero: { populate: ["imgDesktop", "imgMobile"] },
     },
   });
 

@@ -22,7 +22,7 @@ $colors: (
   main: #1c1c1c,
   primary: #f9004d,
   white: #fff,
-  t-medium: #cac5be,
+  t-medium: rgba(#c6c9d8, 0.75),
 );
 
 $font-sizes: (
@@ -35,6 +35,7 @@ $font-weights: (
   medium: 500,
   semibold: 600,
   bold: 700,
+  extra-bold: 800,
   black: 900,
 );
 
@@ -45,9 +46,9 @@ $offsets: (
 );
 
 $fonts: (
-  main: #{"Montserrat",
+  main: #{"Poppins",
   sans-serif},
-  secondary: "Poppins",
+  secondary: "Montserrat",
 );
 
 /* Screen width boundings

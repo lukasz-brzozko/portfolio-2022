@@ -3,17 +3,19 @@
 @use "../base/media-config" as *;
 
 .hero {
+  position: relative;
+
+  display: grid;
   height: 100vh;
   overflow: hidden;
-  position: relative;
-  display: grid;
   place-items: center;
 
   &__text-block {
     position: relative;
-    color: color(white);
 
     grid-column: 1/-1;
+
+    color: color(white);
 
     @include media(tablet) {
       grid-column: 1 / span 6;
@@ -34,5 +36,33 @@
         }
       }
     }
+  }
+
+  &__img {
+    display: block;
+
+    &--desktop {
+      @include media(0, tablet) {
+        display: none;
+      }
+    }
+
+    &--mobile {
+      @include media(tablet) {
+        display: none !important;
+      }
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--color);
+    opacity: 0.5;
   }
 }

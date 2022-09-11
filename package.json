@@ -18,6 +18,8 @@
     "bem-css-modules": "^1.4.3",
     "eslint": "8.23.0",
     "eslint-config-next": "12.2.5",
-    "sass": "^1.54.8"
+    "sass": "^1.54.8",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^28.0.0"
   }
 }

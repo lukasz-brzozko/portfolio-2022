@@ -1,5 +1,6 @@
 @use "./functions" as *;
 @use "./media-config" as *;
+@use "./variables" as *;
 
 @mixin font-smoothing($value: on) {
   @if $value == on {
@@ -94,7 +95,7 @@
 @mixin typo-h1 {
   font-size: rv(32, 75);
   font-weight: font-weight(black);
-  font-family: font(main);
+  font-family: font(secondary);
   line-height: 1.26;
 }
 
