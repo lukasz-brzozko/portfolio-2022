@@ -1,5 +1,6 @@
 import block from "bem-css-modules";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 import IMG from "../atoms/IMG";
 import Overlay from "../atoms/Overlay";
@@ -9,7 +10,7 @@ import styles from "../../styles/organisms/Hero.module.scss";
 const b = block(styles);
 
 const CONSTANTS = {
-  scrollTranslateRatio: 0.2,
+  scrollTranslateRatio: 0.1,
 };
 
 function Hero({ data }) {
@@ -17,26 +18,27 @@ function Hero({ data }) {
 
   const [imgYPosition, setImgYPosition] = useState(0);
 
-  const handleScroll = (e) => {
+  const handleScroll = useCallback((e) => {
     const scrollPosition = window.scrollY;
-
-    if (scrollPosition > window.innerHeight) return;
-
     const imgTransition = window.scrollY * CONSTANTS.scrollTranslateRatio;
 
     setImgYPosition(`${imgTransition}px`);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const { ref, entry } = useInView({
+    onChange: (inView) => {
+      if (inView) {
+        return window.addEventListener("scroll", handleScroll, {
+          passive: true,
+        });
+      }
+
+      window.removeEventListener("scroll", handleScroll);
+    },
+  });
+
   return (
-    <section className={b()}>
+    <section className={b()} ref={ref}>
       <div
         className={b("img-container")}
         style={{ "--position-y": imgYPosition }}
@@ -48,11 +50,13 @@ function Hero({ data }) {
         <IMG className={`${b("img", { mobile: true })}`} image={imgMobile} />
       </div>
 
+      {/* Overlay */}
       <Overlay data={overlay} />
 
       <div className="inner ui-relative">
         <div className="grid">
           <div className={b("text-block")}>
+            {/* Subtitle */}
             <span
               className={`${b(
                 "subtitle"
@@ -60,9 +64,11 @@ function Hero({ data }) {
             >
               {subtitle}
             </span>
+
+            {/* Title */}
             <div
-              dangerouslySetInnerHTML={{ __html: title }}
               className={`${b("title")} t-typo-h1`}
+              dangerouslySetInnerHTML={{ __html: title }}
             ></div>
           </div>
         </div>

@@ -12,7 +12,7 @@ function Home({ homepage }) {
   return (
     <>
       <Hero data={hero} />
-      <div style={{ height: "300vh", backgroundColor: "black" }}></div>
+      <div style={{ height: "200vh", backgroundColor: "black" }}></div>
     </>
   );
 }
