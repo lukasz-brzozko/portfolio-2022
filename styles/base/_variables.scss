@@ -1,3 +1,4 @@
+// @use './variables-css' as *;
 @use "sass:math";
 
 $breakpoints: (
@@ -19,10 +20,9 @@ $orientations: (
 );
 
 $colors: (
-  main: #1c1c1c,
-  primary: #f9004d,
-  white: #fff,
-  t-medium: rgba(#c6c9d8, 0.75),
+  t-primary: var(--color-t-primary),
+  t-secondary: var(--color-t-secondary),
+  secondary: var(--color-secondary),
 );
 
 $font-sizes: (

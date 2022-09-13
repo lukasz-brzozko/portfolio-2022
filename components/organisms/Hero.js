@@ -60,7 +60,7 @@ function Hero({ data }) {
             <span
               className={`${b(
                 "subtitle"
-              )} t-typo-caption ui-block ui-color--t-medium`}
+              )} t-typo-caption ui-block ui-color--t-secondary`}
             >
               {subtitle}
             </span>

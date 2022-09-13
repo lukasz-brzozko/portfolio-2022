@@ -15,7 +15,7 @@
 
     grid-column: 1/-1;
 
-    color: color(white);
+    color: color(t-primary);
 
     @include media(tablet) {
       grid-column: 1 / span 6;
