@@ -1,0 +1,28 @@
+@use "../../../styles/base" as *;
+
+@mixin inner() {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  margin: 0 auto;
+
+  padding-right: $size-inner-padding;
+  padding-left: $size-inner-padding;
+
+  vertical-align: baseline;
+
+  @include media(mobile) {
+    padding-right: $size-inner-padding-medium;
+    padding-left: $size-inner-padding-medium;
+  }
+
+  @include media(tablet) {
+    padding-right: $size-inner-padding-responsive;
+    padding-left: $size-inner-padding-responsive;
+  }
+}
+
+.inner {
+  @include inner;
+}
