@@ -1,7 +1,7 @@
 import block from "bem-css-modules";
 
 import Image from "next/image";
-import { getStrapiMedia } from "../../lib/media";
+import { getStrapiMedia } from "../../../lib/media";
 
 function IMG({ image, objectFit, className }) {
   const { alternativeText, width, height } = image.data.attributes;

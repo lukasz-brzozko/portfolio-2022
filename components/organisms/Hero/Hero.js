@@ -2,10 +2,10 @@ import block from "bem-css-modules";
 import { useCallback, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-import IMG from "../atoms/IMG";
-import Overlay from "../atoms/Overlay";
+import IMG from "../../atoms/IMG/IMG";
+import Overlay from "../../atoms/Overlay/Overlay";
 
-import styles from "../../styles/organisms/Hero.module.scss";
+import styles from "./Hero.module.scss";
 
 const b = block(styles);
 
