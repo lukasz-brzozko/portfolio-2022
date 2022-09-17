@@ -1,0 +1,66 @@
+// @use './variables-css' as *;
+@use "sass:math";
+
+$breakpoints: (
+  mobile-sm: 35em,
+  // 560px
+  mobile: 48em,
+  // 768px
+  tablet: 64em,
+  // 1024px
+  tablet-lg: 71.25em,
+  // 1140px
+  desktop: 87.5em,
+  // 1400px
+);
+
+$orientations: (
+  portrait: portrait,
+  landscape: landscape,
+);
+
+$colors: (
+  t-primary: var(--color-t-primary),
+  t-secondary: var(--color-t-secondary),
+  secondary: var(--color-secondary),
+);
+
+$font-sizes: (
+  main: 16px,
+);
+
+$font-weights: (
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+  extra-bold: 800,
+  black: 900,
+);
+
+$offsets: (
+  default: 16px,
+  large: 24px,
+  small: 8px,
+);
+
+$fonts: (
+  main: #{"Poppins",
+  sans-serif},
+  secondary: "Montserrat",
+);
+
+/* Screen width boundings
+========================================================================== */
+$desktopWidth: 1920;
+$mobileWidth: 375;
+
+$mockupMobileScreenHeight: 812;
+$mockupDesktopScreenHeight: 900;
+
+// Inner
+$size-inner-width: 1320px;
+$size-inner-padding: 1rem;
+$size-inner-padding-medium: 2.75rem;
+$size-inner-padding-responsive: #{math.div(120, $desktopWidth) * 100 + "vw"};

@@ -1,0 +1,8 @@
+@use "./functions" as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+
+  column-gap: rv(20, 60);
+}

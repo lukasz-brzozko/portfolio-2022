@@ -1,0 +1,110 @@
+@use "./mixins" as *;
+@use "./variables" as *;
+@use "./media-config" as *;
+
+.ui-bg {
+  @include background-modifiers;
+}
+
+.ui-color {
+  @include color-modifiers;
+}
+
+.ui-unordered-list,
+.ui-ordered-list {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  li {
+    margin: 1rem 0;
+  }
+}
+
+.ui-hide-scrollbar {
+  @include hide-scrollbar;
+}
+
+.ui-hide {
+  display: none !important;
+}
+
+.ui-hide-0-mobile {
+  @include media(0, mobile) {
+    display: none !important;
+  }
+}
+
+.ui-hide-0-tablet {
+  @include media(0, tablet) {
+    display: none !important;
+  }
+}
+
+.ui-hide-mobile {
+  @include media(mobile) {
+    display: none !important;
+  }
+}
+
+.ui-hide-mobile-tablet {
+  @include media(mobile, tablet) {
+    display: none !important;
+  }
+}
+
+.ui-hide-tablet {
+  @include media(tablet) {
+    display: none !important;
+  }
+}
+
+.ui-hide-desktop {
+  @include media(desktop) {
+    display: none !important;
+  }
+}
+
+.ui-svg-fill {
+  fill: currentcolor;
+}
+
+.ui-list {
+  @include reset--list;
+}
+
+.ui-overflow {
+  overflow: hidden;
+}
+
+.ui-no-scroll {
+  @media (hover: hover) {
+    padding-right: 17px;
+  }
+
+  overflow: hidden;
+}
+
+.ui-img-full {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ui-transition {
+  @include transition;
+}
+
+.ui-block {
+  display: block;
+}
+
+.ui-relative {
+  position: relative;
+}
+
+.ui-no-events {
+  pointer-events: none;
+}
