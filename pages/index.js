@@ -1,5 +1,5 @@
 import block from "bem-css-modules";
-import Hero from "../components/organisms/Hero";
+import Hero from "../components/organisms/Hero/Hero";
 import { fetchAPI } from "../lib/api";
 
 block.setSettings({
