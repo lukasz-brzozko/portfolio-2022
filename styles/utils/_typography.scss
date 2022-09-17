@@ -8,6 +8,10 @@
   @include typo-h2();
 }
 
+.t-typo-p1 {
+  @include typo-p1();
+}
+
 .t-typo-caption {
   @include typo-caption();
 }

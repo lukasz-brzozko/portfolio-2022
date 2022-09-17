@@ -1,0 +1,13 @@
+@use "../../base/" as *;
+
+:root {
+  --inner-padding: #{$size-inner-padding};
+
+  @include media(mobile) {
+    --inner-padding: #{$size-inner-padding-medium};
+  }
+
+  @include media(tablet) {
+    --inner-padding: #{$size-inner-padding-responsive};
+  }
+}

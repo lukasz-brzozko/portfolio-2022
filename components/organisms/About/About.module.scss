@@ -1,2 +1,30 @@
+@use "../../../styles/base/" as *;
+
 .about {
+  &__img-wrapper,
+  &__text-block-wrapper {
+    grid-column: 1/-1;
+  }
+
+  &__img-wrapper {
+    max-height: rv(600);
+
+    @include media(0, tablet) {
+      margin-bottom: rv(20);
+    }
+
+    @include media(tablet) {
+      grid-column: 1 / span 5;
+    }
+  }
+
+  &__img {
+    border-radius: rv(8);
+  }
+
+  &__text-block-wrapper {
+    @include media(tablet) {
+      grid-column: 6/-1;
+    }
+  }
 }

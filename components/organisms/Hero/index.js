@@ -2,7 +2,7 @@ import block from "bem-css-modules";
 import { useCallback, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-import IMG from "../../atoms/IMG/IMG";
+import IMG from "../../atoms/IMG";
 import Overlay from "../../atoms/Overlay";
 import Grid from "../../layout/Grid";
 import Inner from "../../layout/Inner";
@@ -46,14 +46,23 @@ function Hero({ data }) {
         style={{ "--position-y": imgYPosition }}
       >
         {/* Desktop IMG */}
-        <IMG className={`${b("img", { desktop: true })}`} image={imgDesktop} />
+        <IMG
+          className={`${b("img", { desktop: true })}`}
+          image={imgDesktop}
+          priority={true}
+        />
 
         {/* Mobile IMG */}
-        <IMG className={`${b("img", { mobile: true })}`} image={imgMobile} />
+        <IMG
+          className={`${b("img", { mobile: true })}`}
+          image={imgMobile}
+          priority={true}
+        />
       </div>
 
       {/* Overlay */}
       <Overlay data={overlay} />
+
       <Inner className="ui-relative">
         <Grid>
           <div className={b("text-block")}>
