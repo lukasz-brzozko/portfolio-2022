@@ -20,9 +20,11 @@ $orientations: (
 );
 
 $colors: (
+  secondary: var(--color-secondary),
   t-primary: var(--color-t-primary),
   t-secondary: var(--color-t-secondary),
-  secondary: var(--color-secondary),
+  bg-primary: var(--color-bg-primary),
+  bg-secondary: var(--color-bg-secondary),
 );
 
 $font-sizes: (
@@ -58,6 +60,8 @@ $mobileWidth: 375;
 
 $mockupMobileScreenHeight: 812;
 $mockupDesktopScreenHeight: 900;
+
+$sectionPadding: rv(60, 120);
 
 // Inner
 $size-inner-width: 1320px;

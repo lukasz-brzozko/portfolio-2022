@@ -1,6 +1,4 @@
-@use "./functions" as *;
-@use "./mixins" as *;
-@use "./media-config" as *;
+@use "../base/" as *;
 
 .t-typo-h1 {
   @include typo-h1();

@@ -3,7 +3,9 @@ import { useCallback, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 import IMG from "../../atoms/IMG/IMG";
-import Overlay from "../../atoms/Overlay/Overlay";
+import Overlay from "../../atoms/Overlay";
+import Grid from "../../layout/Grid";
+import Inner from "../../layout/Inner";
 
 import styles from "./Hero.module.scss";
 
@@ -52,9 +54,8 @@ function Hero({ data }) {
 
       {/* Overlay */}
       <Overlay data={overlay} />
-
-      <div className="inner ui-relative">
-        <div className="grid">
+      <Inner className="ui-relative">
+        <Grid>
           <div className={b("text-block")}>
             {/* Subtitle */}
             <span
@@ -71,8 +72,8 @@ function Hero({ data }) {
               dangerouslySetInnerHTML={{ __html: title }}
             ></div>
           </div>
-        </div>
-      </div>
+        </Grid>
+      </Inner>
     </section>
   );
 }

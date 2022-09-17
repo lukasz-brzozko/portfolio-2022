@@ -1,6 +1,4 @@
-@use "./mixins" as *;
-@use "./variables" as *;
-@use "./media-config" as *;
+@use "../base" as *;
 
 .ui-bg {
   @include background-modifiers;

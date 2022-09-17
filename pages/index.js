@@ -1,5 +1,6 @@
 import block from "bem-css-modules";
-import Hero from "../components/organisms/Hero/Hero";
+import Hero from "../components/organisms/Hero";
+import About from "../components/organisms/About";
 import { fetchAPI } from "../lib/api";
 
 block.setSettings({
@@ -7,12 +8,12 @@ block.setSettings({
 });
 
 function Home({ homepage }) {
-  const { hero } = homepage.data.attributes;
+  const { hero, about } = homepage.data.attributes;
 
   return (
     <>
       <Hero data={hero} />
-      <div style={{ height: "200vh", backgroundColor: "black" }}></div>
+      <About data={about} />
     </>
   );
 }
@@ -21,6 +22,7 @@ export async function getStaticProps() {
   const homepage = await fetchAPI("/homepage", {
     populate: {
       hero: { populate: ["imgDesktop", "imgMobile", "overlay"] },
+      about: { populate: ["textBlock", "tabs", "img"] },
     },
   });
 
