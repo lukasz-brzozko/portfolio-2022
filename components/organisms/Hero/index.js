@@ -28,6 +28,10 @@ const variants = {
     transition: {
       delay: i * 0.1,
       staggerChildren: 0.1,
+      type: "spring",
+      damping: 12.5,
+      mass: 0.75,
+      stiffness: 180,
     },
   }),
   [VARIANTS_NAMES.hidden]: { y: 50, opacity: 0 },
