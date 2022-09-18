@@ -1,7 +1,6 @@
 import block from "bem-css-modules";
-import { useCallback, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
+import { useState } from "react";
 
 import IMG from "../../atoms/IMG";
 import Overlay from "../../atoms/Overlay";
@@ -29,8 +28,8 @@ const variants = {
       delay: i * 0.1,
       staggerChildren: 0.1,
       type: "spring",
-      damping: 12.5,
-      mass: 0.75,
+      damping: 10,
+      mass: 0.7,
       stiffness: 180,
     },
   }),
@@ -50,28 +49,25 @@ function Hero({ data }) {
 
   const [imgYPosition, setImgYPosition] = useState(0);
 
-  const handleScroll = useCallback((e) => {
-    const scrollPosition = window.scrollY;
-    const imgTransition = window.scrollY * CONSTANTS.scrollTranslateRatio;
+  const { scrollY } = useScroll();
 
-    setImgYPosition(`${imgTransition}px`);
-  }, []);
+  const handleViewportEnter = (e) => {
+    scrollY.onChange((latest) => {
+      const transition = `${latest * CONSTANTS.scrollTranslateRatio}px`;
 
-  const { ref, entry } = useInView({
-    onChange: (inView) => {
-      if (inView) {
-        return window.addEventListener("scroll", handleScroll, {
-          passive: true,
-        });
-      }
+      setImgYPosition(transition);
+    });
+  };
 
-      window.removeEventListener("scroll", handleScroll);
-    },
-  });
+  const handleViewportLeave = (e) => {
+    scrollY.clearListeners();
+  };
 
   return (
-    <section className={b()} ref={ref}>
-      <div
+    <section className={b()}>
+      <motion.div
+        onViewportEnter={handleViewportEnter}
+        onViewportLeave={handleViewportLeave}
         className={b("img-container")}
         style={{ "--position-y": imgYPosition }}
       >
@@ -88,7 +84,7 @@ function Hero({ data }) {
           image={imgMobile}
           priority={true}
         />
-      </div>
+      </motion.div>
 
       {/* Overlay */}
       <Overlay data={overlay} />
