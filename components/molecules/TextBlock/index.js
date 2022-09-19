@@ -1,4 +1,7 @@
 import block from "bem-css-modules";
+import { motion } from "framer-motion";
+
+import { variants, VARIANTS_NAMES } from "../../../constants/animations";
 
 import styles from "./TextBlock.module.scss";
 
@@ -15,10 +18,28 @@ function TextBlock({ data = null }) {
   const TitleTag = titleTag;
 
   return (
-    <div className={b()}>
-      {title && <TitleTag className="title t-typo-h2">{title}</TitleTag>}
-      {desc && <p className="t-typo-p1 ui-color--t-secondary">{desc}</p>}
-    </div>
+    <motion.div
+      className={b()}
+      initial={VARIANTS_NAMES.hidden}
+      whileInView={VARIANTS_NAMES.visible}
+      variants={variants}
+      viewport={{ once: false, margin: "0px 0px -20% 0px" }}
+    >
+      {title && (
+        <motion.h2 custom={0} variants={variants} className="title t-typo-h2">
+          {title}
+        </motion.h2>
+      )}
+      {desc && (
+        <motion.p
+          custom={1}
+          variants={variants}
+          className="t-typo-p1 ui-color--t-secondary"
+        >
+          {desc}
+        </motion.p>
+      )}
+    </motion.div>
   );
 }
 

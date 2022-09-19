@@ -2,6 +2,7 @@ import block from "bem-css-modules";
 import { motion, useScroll } from "framer-motion";
 import { useState } from "react";
 
+import { variants, VARIANTS_NAMES } from "../../../constants/animations";
 import IMG from "../../atoms/IMG";
 import Overlay from "../../atoms/Overlay";
 import Grid from "../../layout/Grid";
@@ -13,27 +14,6 @@ const b = block(styles);
 
 const CONSTANTS = {
   scrollTranslateRatio: 0.1,
-};
-
-const VARIANTS_NAMES = {
-  visible: "visible",
-  hidden: "hidden",
-};
-
-const variants = {
-  [VARIANTS_NAMES.visible]: (i = 0) => ({
-    y: 0,
-    opacity: 1,
-    transition: {
-      delay: i * 0.1,
-      staggerChildren: 0.1,
-      type: "spring",
-      damping: 10,
-      mass: 0.7,
-      stiffness: 180,
-    },
-  }),
-  [VARIANTS_NAMES.hidden]: { y: 50, opacity: 0 },
 };
 
 function Hero({ data }) {
@@ -106,35 +86,26 @@ function Hero({ data }) {
             </motion.div>
 
             {/* Title */}
-            <div className={`${b("title")} t-typo-h1`}>
-              <motion.span
-                custom={1}
-                initial={VARIANTS_NAMES.hidden}
-                animate={VARIANTS_NAMES.visible}
-                variants={variants}
-                className="ui-block"
-              >
+            <motion.div
+              variants={variants}
+              initial={VARIANTS_NAMES.hidden}
+              animate={VARIANTS_NAMES.visible}
+              className={`${b("title")} t-typo-h1`}
+            >
+              <motion.span custom={1} variants={variants} className="ui-block">
                 {titleLineOne}
               </motion.span>
               <motion.h1
                 custom={2}
-                initial={VARIANTS_NAMES.hidden}
-                animate={VARIANTS_NAMES.visible}
                 variants={variants}
                 className="ui-color--secondary"
               >
                 {titleLineTwo}
               </motion.h1>
-              <motion.h2
-                custom={3}
-                initial={VARIANTS_NAMES.hidden}
-                animate={VARIANTS_NAMES.visible}
-                variants={variants}
-                className="t-typo-h2"
-              >
+              <motion.h2 custom={3} variants={variants} className="t-typo-h2">
                 {titleLineThree}
               </motion.h2>
-            </div>
+            </motion.div>
           </div>
         </Grid>
       </Inner>
