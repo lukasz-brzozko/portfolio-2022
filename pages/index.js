@@ -14,6 +14,7 @@ function Home({ homepage }) {
     <>
       <Hero data={hero} />
       <About data={about} />
+      <div style={{ height: "300vh" }}></div>
     </>
   );
 }
