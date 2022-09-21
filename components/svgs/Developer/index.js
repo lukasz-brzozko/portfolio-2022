@@ -1,10 +1,57 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/display-name */
-import { motion } from "framer-motion";
+import block from "bem-css-modules";
+import { motion, useAnimation } from "framer-motion";
+
+import styles from "./Developer.module.scss";
+
+const b = block(styles);
 
 function Developer() {
+  const VARIANTS = {
+    hidden: {
+      scaleX: 0,
+    },
+    show: (i = 0) => ({
+      scaleX: 1,
+      transition: {
+        delay: i * 0.3,
+        type: "spring",
+        damping: 7,
+        velocity: 15,
+        stiffness: 300,
+        mass: 1,
+      },
+    }),
+  };
+
+  const animation = useAnimation();
+
+  async function sequence() {
+    const transition = (i, dynamicDelay = true) => ({
+      delay: dynamicDelay ? i * 0.3 : 0,
+      type: "spring",
+      damping: 7,
+      velocity: 15,
+      stiffness: 300,
+      mass: 1,
+    });
+
+    await animation.start((i = 0) => ({
+      scaleX: 1,
+      transition: transition(i, true),
+    }));
+
+    await animation.start((i = 0) => ({
+      translateY: i === 0 ? "4vh" : i === 1 ? "-2vh" : "-4vh",
+      transition: transition(i, false),
+    }));
+  }
+
   return (
-    <svg
+    <motion.svg
+      whileInView={sequence}
+      className={b()}
       xmlns="http://www.w3.org/2000/svg"
       data-name="Layer 1"
       width="786.81995"
@@ -729,9 +776,9 @@ function Developer() {
         style={{ fill: "var(--color-secondary)" }}
       />
       <motion.rect
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 1 }}
+        custom={0}
+        initial={VARIANTS.hidden}
+        animate={animation}
         x="209.38454"
         y="260.82713"
         width="50.71916"
@@ -740,7 +787,10 @@ function Developer() {
         fill="#6c63ff"
         style={{ fill: "var(--color-secondary)" }}
       />
-      <rect
+      <motion.rect
+        custom={1}
+        initial={VARIANTS.hidden}
+        animate={animation}
         x="183.62601"
         y="282.51852"
         width="102.23622"
@@ -748,7 +798,10 @@ function Developer() {
         rx="3.26417"
         fill="#e6e6e6"
       />
-      <rect
+      <motion.rect
+        custom={2}
+        initial={VARIANTS.hidden}
+        animate={animation}
         x="183.62601"
         y="304.20991"
         width="102.23622"
@@ -794,7 +847,7 @@ function Developer() {
         transform="translate(-206.59003 -163.87113)"
         opacity="0.2"
       />
-    </svg>
+    </motion.svg>
   );
 }
 
