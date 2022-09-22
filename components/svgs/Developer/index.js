@@ -1,56 +1,104 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/display-name */
 import block from "bem-css-modules";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import styles from "./Developer.module.scss";
 
 const b = block(styles);
 
 function Developer() {
+  const [isAnimationInitiated, setIsAnimationInitiated] = useState(false);
+  const [intervalID, setIntervalID] = useState(null);
+
+  const refSVG = useRef(null);
+  const isInView = useInView(refSVG);
+
   const VARIANTS = {
     hidden: {
       scaleX: 0,
     },
-    show: (i = 0) => ({
-      scaleX: 1,
-      transition: {
-        delay: i * 0.3,
-        type: "spring",
-        damping: 7,
-        velocity: 15,
-        stiffness: 300,
-        mass: 1,
-      },
-    }),
+    // show: (i = 0) => ({
+    //   scaleX: 1,
+    //   transition: {
+    //     delay: i * 0.3,
+    //     type: "spring",
+    //     damping: 7,
+    //     velocity: 15,
+    //     stiffness: 300,
+    //     mass: 1,
+    //   },
+    // }),
   };
 
   const animation = useAnimation();
 
-  async function sequence() {
-    const transition = (i, dynamicDelay = true) => ({
-      delay: dynamicDelay ? i * 0.3 : 0,
-      type: "spring",
-      damping: 7,
-      velocity: 15,
-      stiffness: 300,
-      mass: 1,
-    });
+  const transition = (i, dynamicDelay = true) => ({
+    delay: dynamicDelay ? i * 0.3 : 0,
+    type: "spring",
+    damping: 7,
+    velocity: 15,
+    stiffness: 300,
+    mass: 1,
+  });
 
+  const moveScreenBarsSequence = useCallback(async () => {
+    await animation.start((i = 0) => ({
+      translateY: i === 0 ? "3.5%" : i === 1 ? "3.5%" : "-7.5%",
+      transition: transition(i, false),
+    }));
+
+    await animation.start((i = 0) => ({
+      translateY: i === 0 ? "7.5%" : i === 1 ? "-3.5%" : "-3.5%",
+      transition: transition(i, false),
+    }));
+
+    await animation.start((i = 0) => ({
+      translateY: "0%",
+      transition: transition(i, false),
+    }));
+
+    // await moveScreenBarsSequence();
+  }, [animation]);
+
+  const animationSequence = useCallback(async () => {
     await animation.start((i = 0) => ({
       scaleX: 1,
       transition: transition(i, true),
     }));
 
-    await animation.start((i = 0) => ({
-      translateY: i === 0 ? "4vh" : i === 1 ? "-2vh" : "-4vh",
-      transition: transition(i, false),
-    }));
-  }
+    setIsAnimationInitiated(true);
+  }, [animation]);
+
+  useEffect(() => {
+    if (isInView && !isAnimationInitiated && intervalID === null) {
+      animationSequence();
+      return;
+    }
+
+    if (isInView && isAnimationInitiated && intervalID === null) {
+      moveScreenBarsSequence();
+      setIntervalID(setInterval(moveScreenBarsSequence, 5000));
+      return;
+    }
+
+    if (!isInView && intervalID !== null) {
+      clearInterval(intervalID);
+      setIntervalID(null);
+      return;
+    }
+  }, [
+    animationSequence,
+    intervalID,
+    isAnimationInitiated,
+    isInView,
+    moveScreenBarsSequence,
+  ]);
 
   return (
     <motion.svg
-      whileInView={sequence}
+      ref={refSVG}
       className={b()}
       xmlns="http://www.w3.org/2000/svg"
       data-name="Layer 1"
@@ -711,42 +759,47 @@ function Developer() {
         transform="translate(-206.59003 -163.87113)"
         fill="#3f3d56"
       />
-      <ellipse
+      <motion.ellipse
+        whileHover={{ fill: "#FF605C", scale: 1.2 }}
         cx="116.05131"
         cy="192.32963"
         rx="5.95043"
         ry="6.08304"
         fill="#3f3d56"
       />
-      <ellipse
+      <motion.ellipse
+        whileHover={{ fill: "#FFBD44", scale: 1.2 }}
         cx="136.60733"
         cy="192.32963"
         rx="5.95043"
         ry="6.08304"
         fill="#3f3d56"
       />
-      <ellipse
+      <motion.ellipse
+        whileHover={{ fill: "#00CA4E", scale: 1.2 }}
         cx="157.16336"
         cy="192.32963"
         rx="5.95043"
         ry="6.08304"
         fill="#3f3d56"
       />
-      <path
-        d="M548.20637,351.622h-14.6a1.1053,1.1053,0,0,0,0,2.21h14.6a1.10511,1.10511,0,0,0,0-2.21Z"
-        transform="translate(-206.59003 -163.87113)"
-        fill="#3f3d56"
-      />
-      <path
-        d="M548.20637,355.772h-14.6a1.10527,1.10527,0,0,0,0,2.21h14.6a1.10508,1.10508,0,0,0,0-2.21Z"
-        transform="translate(-206.59003 -163.87113)"
-        fill="#3f3d56"
-      />
-      <path
-        d="M548.20637,359.92194h-14.6a1.1053,1.1053,0,0,0,0,2.21h14.6a1.10511,1.10511,0,0,0,0-2.21Z"
-        transform="translate(-206.59003 -163.87113)"
-        fill="#3f3d56"
-      />
+      <motion.g whileHover={{ scale: 1.2 }}>
+        <path
+          d="M548.20637,351.622h-14.6a1.1053,1.1053,0,0,0,0,2.21h14.6a1.10511,1.10511,0,0,0,0-2.21Z"
+          transform="translate(-206.59003 -163.87113)"
+          fill="#3f3d56"
+        />
+        <path
+          d="M548.20637,355.772h-14.6a1.10527,1.10527,0,0,0,0,2.21h14.6a1.10508,1.10508,0,0,0,0-2.21Z"
+          transform="translate(-206.59003 -163.87113)"
+          fill="#3f3d56"
+        />
+        <path
+          d="M548.20637,359.92194h-14.6a1.1053,1.1053,0,0,0,0,2.21h14.6a1.10511,1.10511,0,0,0,0-2.21Z"
+          transform="translate(-206.59003 -163.87113)"
+          fill="#3f3d56"
+        />
+      </motion.g>
       <path
         d="M900.18575,604.97238a6.41621,6.41621,0,0,0,6.1831,4.331l26.49183-.68178a6.3285,6.3285,0,0,0,5.98085-4.657l3.74888-40.08721a9.79409,9.79409,0,0,0,4.23793.87079,9.66133,9.66133,0,1,0-.4849-19.31658,8.18393,8.18393,0,0,0-1.73618.18056,6.54764,6.54764,0,0,0-4.87405-2.103l-40.75051,1.05229a5.85294,5.85294,0,0,0-1.00519.1248,6.36455,6.36455,0,0,0-4.87318,8.26464Zm43.17345-43.81684,2.66764-9.55274a6.50649,6.50649,0,0,0,.02036-3.37458c.12944-.00034.24363-.06169.37307-.062a6.91049,6.91049,0,0,1,.32357,13.81714A6.50527,6.50527,0,0,1,943.3592,561.15554Z"
         transform="translate(-206.59003 -163.87113)"
