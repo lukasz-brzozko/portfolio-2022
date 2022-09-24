@@ -14,22 +14,22 @@ const transition = (i, dynamicDelay = true) => ({
   mass: 1,
 });
 
+const VARIANTS = {
+  hidden: {
+    scaleX: 0,
+  },
+  animateScreenBtn: (color) => ({
+    fill: color,
+    scale: 1.2,
+  }),
+};
+
 function DesktopScreen() {
   const isSVGInView = useContext(DeveloperContext);
   const animation = useAnimation();
 
   const [isAnimationInitiated, setIsAnimationInitiated] = useState(false);
   const [intervalID, setIntervalID] = useState(null);
-
-  const VARIANTS = {
-    hidden: {
-      scaleX: 0,
-    },
-    animateScreenBtn: (color) => ({
-      fill: color,
-      scale: 1.2,
-    }),
-  };
 
   const moveScreenBarsSequence = useCallback(async () => {
     await animation.start((i = 0) => ({
@@ -117,6 +117,7 @@ function DesktopScreen() {
       <motion.ellipse
         custom="#FF605C"
         whileHover={VARIANTS.animateScreenBtn}
+        whileTap={VARIANTS.animateScreenBtn}
         cx="116.05131"
         cy="192.32963"
         rx="5.95043"
@@ -126,6 +127,7 @@ function DesktopScreen() {
       <motion.ellipse
         custom="#FFBD44"
         whileHover={VARIANTS.animateScreenBtn}
+        whileTap={VARIANTS.animateScreenBtn}
         cx="136.60733"
         cy="192.32963"
         rx="5.95043"
@@ -135,6 +137,7 @@ function DesktopScreen() {
       <motion.ellipse
         custom="#00CA4E"
         whileHover={VARIANTS.animateScreenBtn}
+        whileTap={VARIANTS.animateScreenBtn}
         cx="157.16336"
         cy="192.32963"
         rx="5.95043"

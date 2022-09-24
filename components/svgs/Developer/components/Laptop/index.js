@@ -9,30 +9,66 @@ function Laptop() {
   const isSVGInView = useContext(DeveloperContext);
   const animation = useAnimation();
 
+  const [isAnimationInitiated, setIsAnimationInitiated] = useState(false);
+  const [isAnimationRunning, setIsAnimationRunning] = useState(false);
+
   const VARIANTS = {
+    initial: {
+      translateX: "0%",
+      transition: { duration: 0 },
+    },
+
     hover: {
       scale: 1.25,
     },
   };
 
   const animateLine = useCallback(async () => {
-    await animation.start((i = 0) => ({
-      translateX: ["0.5%", "-0.5%"],
-      transition: {
-        delay: Math.random(),
-        repeat: Infinity,
-        repeatType: "mirror",
-        duration: 1.3,
-        // ease: "easeIn",
-      },
-    }));
+    await animation.start((i = 0) => {
+      const translateVal = Math.random() >= 0.5 ? 0.25 : -0.25;
+      const firstTranslateVal = `${translateVal}%`;
+      const secondTranslateVal = `${translateVal * -1}%`;
+
+      return {
+        translateX: ["0%", firstTranslateVal, "0%", secondTranslateVal, "0%"],
+        transition: {
+          delay: Math.random(),
+          repeat: Infinity,
+          duration: 3,
+          ease: "linear",
+        },
+      };
+    });
   }, [animation]);
 
   useEffect(() => {
-    if (isSVGInView) {
+    console.log({ isAnimationInitiated, isSVGInView, isAnimationRunning });
+
+    if (isAnimationInitiated && !isSVGInView) {
+      animation.stop();
+      animation.set({ translateX: "0%", transition: { duration: 0 } });
+      // animation.set(VARIANTS.initial);
+
+      setIsAnimationRunning(false);
+    } else if (!isAnimationInitiated && isSVGInView) {
       animateLine();
+
+      setIsAnimationInitiated(true);
+      setIsAnimationRunning(true);
+    } else if (isAnimationInitiated && isSVGInView) {
+      if (!isAnimationRunning) {
+        animateLine();
+
+        setIsAnimationRunning(true);
+      }
     }
-  }, [animation, isSVGInView]);
+  }, [
+    animation,
+    animateLine,
+    isAnimationInitiated,
+    isAnimationRunning,
+    isSVGInView,
+  ]);
 
   return (
     <motion.g className="laptop">
@@ -355,7 +391,6 @@ function Laptop() {
       </g>
       <motion.g
         className="laptop-screen-line-1"
-        custom={0}
         animate={animation}
         whileHover={VARIANTS.hover}
       >
@@ -402,7 +437,6 @@ function Laptop() {
       </motion.g>
       <motion.g
         className="laptop-screen-line-2"
-        custom={0}
         animate={animation}
         whileHover={VARIANTS.hover}
       >
@@ -449,7 +483,6 @@ function Laptop() {
       </motion.g>
       <motion.g
         className="laptop-screen-line-3"
-        custom={0}
         animate={animation}
         whileHover={VARIANTS.hover}
       >
@@ -494,7 +527,11 @@ function Laptop() {
           fill="#fff"
         />
       </motion.g>
-      <motion.g className="laptop-screen-line-4">
+      <motion.g
+        className="laptop-screen-line-4"
+        animate={animation}
+        whileHover={VARIANTS.hover}
+      >
         <rect
           x="541.64947"
           y="379.87703"
@@ -528,7 +565,11 @@ function Laptop() {
           fill="#fff"
         />
       </motion.g>
-      <motion.g className="laptop-screen-line-5">
+      <motion.g
+        className="laptop-screen-line-5"
+        animate={animation}
+        whileHover={VARIANTS.hover}
+      >
         <rect
           x="541.64947"
           y="386.75755"
@@ -562,7 +603,11 @@ function Laptop() {
           fill="#fff"
         />
       </motion.g>
-      <motion.g className="laptop-screen-line-6">
+      <motion.g
+        className="laptop-screen-line-6"
+        animate={animation}
+        whileHover={VARIANTS.hover}
+      >
         <rect
           x="541.82303"
           y="394.06448"
@@ -596,7 +641,11 @@ function Laptop() {
           fill="#fff"
         />
       </motion.g>
-      <motion.g className="laptop-screen-line-7">
+      <motion.g
+        className="laptop-screen-line-7"
+        animate={animation}
+        whileHover={VARIANTS.hover}
+      >
         <rect
           x="524.30386"
           y="400.85086"
@@ -630,7 +679,11 @@ function Laptop() {
           fill="#fff"
         />
       </motion.g>
-      <motion.g className="laptop-screen-line-8">
+      <motion.g
+        className="laptop-screen-line-8"
+        animate={animation}
+        whileHover={VARIANTS.hover}
+      >
         <rect
           x="548.15407"
           y="407.89751"
