@@ -4,12 +4,7 @@ import { animations, motion, useAnimation } from "framer-motion";
 import { useCallback, useState } from "react";
 
 const transition = {
-  type: "spring",
-  damping: 3,
-  velocity: 300,
-  stiffness: 20,
-  bounce: 200,
-  mass: 0.1,
+  duration: 0.5,
 };
 
 function Mug() {
@@ -24,21 +19,16 @@ function Mug() {
 
     animation.start({
       translateY: ["0%", "-3%", "0%"],
-      transition: { duration: 0.5 },
+      transition,
     });
 
     await animation.start({
       rotate: [0, -10, 10, -10, 10, 0],
-
-      transition: {
-        // repeat: 3,
-        // repeatType: "mirror",
-        duration: 0.5,
-      },
+      transition,
     });
 
     setIsAnimationFinished(true);
-  }, [isAnimationFinished, animation]);
+  }, [animation, isAnimationFinished]);
 
   return (
     <motion.g
