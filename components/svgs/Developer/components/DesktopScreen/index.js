@@ -2,10 +2,22 @@
 /* eslint-disable react/display-name */
 import { motion, useAnimation } from "framer-motion";
 import { useCallback, useContext, useEffect, useState } from "react";
+
 import { DeveloperContext } from "../../index";
+
+const transition = (i, dynamicDelay = true) => ({
+  delay: dynamicDelay ? i * 0.3 : 0,
+  type: "spring",
+  damping: 7,
+  velocity: 15,
+  stiffness: 300,
+  mass: 1,
+});
 
 function DesktopScreen() {
   const isSVGInView = useContext(DeveloperContext);
+  const animation = useAnimation();
+
   const [isAnimationInitiated, setIsAnimationInitiated] = useState(false);
   const [intervalID, setIntervalID] = useState(null);
 
@@ -18,17 +30,6 @@ function DesktopScreen() {
       scale: 1.2,
     }),
   };
-
-  const animation = useAnimation();
-
-  const transition = (i, dynamicDelay = true) => ({
-    delay: dynamicDelay ? i * 0.3 : 0,
-    type: "spring",
-    damping: 7,
-    velocity: 15,
-    stiffness: 300,
-    mass: 1,
-  });
 
   const moveScreenBarsSequence = useCallback(async () => {
     await animation.start((i = 0) => ({

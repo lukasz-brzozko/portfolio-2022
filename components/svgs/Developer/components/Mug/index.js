@@ -32,6 +32,7 @@ function Mug() {
 
   return (
     <motion.g
+      className="mug"
       onHoverStart={animateMug}
       whileTap={animateMug}
       animate={animation}
