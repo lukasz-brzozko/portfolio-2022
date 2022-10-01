@@ -1,0 +1,60 @@
+@use "../../../styles/base" as *;
+
+.tabs {
+  width: 100%;
+
+  &__tab-names {
+    display: flex;
+
+    @include media(0, tablet) {
+      width: calc(100% + (var(--inner-padding) * 2));
+      padding: 0 0 0 var(--inner-padding);
+      overflow-x: auto;
+
+      transform: translateX(calc(var(--inner-padding) * -1));
+    }
+  }
+
+  &__tab-name {
+    margin-right: rv(40);
+
+    @include media(0, tablet) {
+      flex-shrink: 0;
+      width: max-content;
+    }
+  }
+
+  &__btn {
+    padding: 0;
+
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
+
+    &::after {
+      @include transition(300ms, cubic-bezier(0, 0.41, 0, 1.4));
+
+      display: block;
+      width: rv(30);
+      height: rv(2);
+
+      margin-top: rv(3);
+
+      background-color: var(--after-bgc);
+
+      transition-property: width;
+
+      content: "";
+    }
+
+    &--active {
+      cursor: default;
+
+      pointer-events: none;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}

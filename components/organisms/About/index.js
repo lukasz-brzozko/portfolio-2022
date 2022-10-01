@@ -4,6 +4,7 @@ import { useRef } from "react";
 import IMG from "../../atoms/IMG";
 import Grid from "../../layout/Grid";
 import Inner from "../../layout/Inner";
+import Tabs from "../../molecules/Tabs";
 import TextBlock from "../../molecules/TextBlock";
 import Developer from "../../svgs/Developer";
 // import DeveloperSVG from "../../../images/svg/developer.svg";
@@ -13,9 +14,9 @@ import styles from "./About.module.scss";
 const b = block(styles);
 
 function About({ data = null }) {
-  if (data === null) return;
-
   const { textBlock, tabs, img } = data;
+
+  const innerRef = useRef(null);
 
   const IMGElement =
     img.data !== null ? (
@@ -27,7 +28,7 @@ function About({ data = null }) {
 
   return (
     <section className={`ui-bg--bg-secondary ui-section-padding`}>
-      <Inner>
+      <Inner ref={innerRef}>
         <Grid>
           {/* IMG */}
           <div className={`${b("img-wrapper")} ui-relative`}>{IMGElement}</div>
@@ -35,6 +36,9 @@ function About({ data = null }) {
           {/* Text block */}
           <div className={b("text-block-wrapper")}>
             <TextBlock data={textBlock} />
+
+            {/* Tabs content */}
+            <Tabs data={tabs} inner={innerRef} />
           </div>
         </Grid>
       </Inner>
