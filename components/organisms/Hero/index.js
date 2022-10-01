@@ -2,7 +2,7 @@ import block from "bem-css-modules";
 import { motion, useScroll } from "framer-motion";
 import { useState } from "react";
 
-import { variants, VARIANTS_NAMES } from "../../../constants/animations";
+import { VARIANTS, VARIANTS_NAMES } from "../../../constants/animations";
 import IMG from "../../atoms/IMG";
 import Overlay from "../../atoms/Overlay";
 import Grid from "../../layout/Grid";
@@ -77,7 +77,7 @@ function Hero({ data }) {
               custom={0}
               initial={VARIANTS_NAMES.hidden}
               animate={VARIANTS_NAMES.visible}
-              variants={variants}
+              variants={VARIANTS}
               className={`${b(
                 "subtitle"
               )} t-typo-caption ui-block ui-color--t-secondary`}
@@ -87,22 +87,22 @@ function Hero({ data }) {
 
             {/* Title */}
             <motion.div
-              variants={variants}
+              variants={VARIANTS}
               initial={VARIANTS_NAMES.hidden}
               animate={VARIANTS_NAMES.visible}
               className={`${b("title")} t-typo-h1`}
             >
-              <motion.span custom={1} variants={variants} className="ui-block">
+              <motion.span custom={1} variants={VARIANTS} className="ui-block">
                 {titleLineOne}
               </motion.span>
               <motion.h1
                 custom={2}
-                variants={variants}
+                variants={VARIANTS}
                 className="ui-color--secondary"
               >
                 {titleLineTwo}
               </motion.h1>
-              <motion.h2 custom={3} variants={variants} className="t-typo-h2">
+              <motion.h2 custom={3} variants={VARIANTS} className="t-typo-h2">
                 {titleLineThree}
               </motion.h2>
             </motion.div>

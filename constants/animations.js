@@ -4,7 +4,7 @@ export const VARIANTS_NAMES = {
   hidden: "hidden",
 };
 
-export const variants = {
+export const VARIANTS = {
   [VARIANTS_NAMES.hidden]: { y: "4vh", opacity: 0 },
   [VARIANTS_NAMES.visible]: (i = 0) => ({
     y: 0,
