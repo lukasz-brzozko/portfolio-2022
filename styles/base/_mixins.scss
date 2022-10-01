@@ -6,8 +6,7 @@
   @if $value == on {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  @else {
+  } @else {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
   }
@@ -63,8 +62,7 @@
 }
 
 @mixin truncate($max-lines: 1) {
-  display: box;
-
+  display: -webkit-box;
   overflow: hidden;
 
   text-overflow: ellipsis;
