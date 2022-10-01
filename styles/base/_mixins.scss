@@ -6,7 +6,8 @@
   @if $value == on {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  } @else {
+  }
+  @else {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
   }
@@ -62,8 +63,8 @@
 }
 
 @mixin truncate($max-lines: 1) {
-  display: -webkit-box;
-  //white-space: nowrap;
+  display: box;
+
   overflow: hidden;
 
   text-overflow: ellipsis;
@@ -93,23 +94,30 @@
 ========================================================================== */
 
 @mixin typo-h1 {
-  font-size: rv(32, 75);
   font-weight: font-weight(black);
+  font-size: rv(32, 75);
   font-family: font(secondary);
   line-height: 1.26;
 }
 
 @mixin typo-h2 {
-  font-size: rv(30, 54);
   font-weight: font-weight(bold);
+  font-size: rv(30, 54);
   font-family: font(main);
   line-height: 1.3;
+}
+
+@mixin typo-h5 {
+  font-weight: font-weight(medium);
+  font-size: rv(18);
+  font-family: font(main);
+  line-height: 1.71;
 }
 
 @mixin typo-p1 {
   font-weight: font-weight(light);
   font-size: rv(16);
-  font-family: font(secondary);
+  font-family: font(main);
   line-height: 1.75;
 
   @include media(tablet) {
@@ -120,11 +128,11 @@
 
 @mixin typo-caption {
   font-weight: font-weight(regular);
+  font-size: rv(13);
   font-family: font(main);
   line-height: 1.2;
-  font-size: rv(13);
-  text-transform: uppercase;
   letter-spacing: rv(4);
+  text-transform: uppercase;
 
   @include media(tablet) {
     font-size: rv(15);
