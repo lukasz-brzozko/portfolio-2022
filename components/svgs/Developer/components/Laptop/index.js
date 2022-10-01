@@ -42,12 +42,9 @@ function Laptop() {
   }, [animation]);
 
   useEffect(() => {
-    console.log({ isAnimationInitiated, isSVGInView, isAnimationRunning });
-
     if (isAnimationInitiated && !isSVGInView) {
       animation.stop();
-      animation.set({ translateX: "0%", transition: { duration: 0 } });
-      // animation.set(VARIANTS.initial);
+      animation.set(VARIANTS.initial);
 
       setIsAnimationRunning(false);
     } else if (!isAnimationInitiated && isSVGInView) {
@@ -68,6 +65,7 @@ function Laptop() {
     isAnimationInitiated,
     isAnimationRunning,
     isSVGInView,
+    VARIANTS.initial,
   ]);
 
   return (
