@@ -7,7 +7,6 @@ import Inner from "../../layout/Inner";
 import Tabs from "../../molecules/Tabs";
 import TextBlock from "../../molecules/TextBlock";
 import Developer from "../../svgs/Developer";
-// import DeveloperSVG from "../../../images/svg/developer.svg";
 
 import styles from "./About.module.scss";
 
@@ -22,7 +21,6 @@ function About({ data = null }) {
     img.data !== null ? (
       <IMG className={`${b("img")}`} image={img} layout="responsive" />
     ) : (
-      // <DeveloperSVG className={`${b("img-placeholder")}`} />
       <Developer />
     );
 

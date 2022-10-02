@@ -2,13 +2,14 @@ import block from "bem-css-modules";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
+import { VARIANTS, VARIANTS_NAMES } from "../../../constants/animations";
 import { BREAKPOINTS } from "../../../constants/breakpoints";
 
 import styles from "./Tabs.module.scss";
 
 const b = block(styles);
 
-const VARIANTS = {
+const TAB_VARIANTS = {
   tabInitial: {
     color: "var(--color-t-primary)",
     "--after-bgc": "var(--color-t-secondary)",
@@ -95,7 +96,7 @@ function Tabs({ data = null, inner }) {
             active: isActive,
           })} t-typo-h5 ui-relative ui-color--t-primary`}
           data-id={id}
-          variants={VARIANTS}
+          variants={TAB_VARIANTS}
           initial="tabInitial"
           animate={isActive ? "tabActive" : "tabInitial"}
           transition={{ duration: 0.5, type: "spring" }}
@@ -113,7 +114,7 @@ function Tabs({ data = null, inner }) {
       <motion.div
         className={`${b("tab-content")} t-typo-p2 ui-color--t-secondary`}
         key={id}
-        variants={VARIANTS}
+        variants={TAB_VARIANTS}
         initial="contentInitial"
         animate="contentActive"
         transition={TRANSITIONS.content}
@@ -125,20 +126,32 @@ function Tabs({ data = null, inner }) {
   });
 
   return (
-    <div className={b()}>
+    <motion.div
+      className={b()}
+      initial={VARIANTS_NAMES.hidden}
+      whileInView={VARIANTS_NAMES.visible}
+      variants={VARIANTS}
+      viewport={{ once: false, margin: "0px 0px -20% 0px" }}
+    >
       {/* Tabs */}
-      <ul
+      <motion.ul
+        custom={2}
+        variants={VARIANTS}
         className={`${b("tab-names-container")} ui-hide-scrollbar ui-list`}
         ref={tabNameList}
       >
         {tabNames}
-      </ul>
+      </motion.ul>
 
       {/* Tab content */}
-      <div className={`${b("tab-contents-container")} ui-list`}>
+      <motion.div
+        custom={3}
+        variants={VARIANTS}
+        className={`${b("tab-contents-container")} ui-list`}
+      >
         {tabContents}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
