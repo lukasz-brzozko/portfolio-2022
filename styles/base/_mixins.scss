@@ -124,6 +124,13 @@
   }
 }
 
+@mixin typo-p2 {
+  font-weight: font-weight(light);
+  font-size: rv(16);
+  font-family: font(main);
+  line-height: 1.75;
+}
+
 @mixin typo-caption {
   font-weight: font-weight(regular);
   font-size: rv(13);

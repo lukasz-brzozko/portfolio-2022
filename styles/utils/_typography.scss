@@ -16,6 +16,10 @@
   @include typo-p1();
 }
 
+.t-typo-p2 {
+  @include typo-p2();
+}
+
 .t-typo-caption {
   @include typo-caption();
 }
