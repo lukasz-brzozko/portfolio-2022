@@ -3,7 +3,7 @@
 .tabs {
   width: 100%;
 
-  &__tab-names {
+  &__tab-names-container {
     display: flex;
 
     @include media(0, tablet) {
@@ -54,6 +54,33 @@
 
       &::after {
         width: 100%;
+      }
+    }
+  }
+
+  &__tab-contents-container {
+    margin-top: rv(20);
+  }
+
+  &__tab-content {
+    a {
+      @include transition;
+
+      &:hover {
+        color: color(t-primary);
+      }
+    }
+
+    b,
+    strong {
+      font-weight: font-weight(medium);
+    }
+
+    ul {
+      @include reset--list;
+
+      li {
+        margin-bottom: rv(15);
       }
     }
   }

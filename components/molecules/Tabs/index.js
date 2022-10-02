@@ -9,13 +9,31 @@ import styles from "./Tabs.module.scss";
 const b = block(styles);
 
 const VARIANTS = {
-  initial: {
+  tabInitial: {
     color: "var(--color-t-primary)",
     "--after-bgc": "var(--color-t-secondary)",
   },
-  active: {
+  tabActive: {
     color: "var(--color-secondary)",
     "--after-bgc": "var(--color-secondary)",
+  },
+
+  contentInitial: { opacity: 0, y: 10 },
+  contentActive: { opacity: 1, y: 0 },
+};
+
+const TRANSITIONS = {
+  content: {
+    duration: 0.6,
+    type: "spring",
+    bounce: 4,
+    damping: 5,
+    velocity: 10,
+    mass: 0.3,
+    opacity: {
+      type: "ease",
+      duration: 0.2,
+    },
   },
 };
 
@@ -78,8 +96,8 @@ function Tabs({ data = null, inner }) {
           })} t-typo-h5 ui-relative ui-color--t-primary`}
           data-id={id}
           variants={VARIANTS}
-          initial="initial"
-          animate={isActive ? "active" : "initial"}
+          initial="tabInitial"
+          animate={isActive ? "tabActive" : "tabInitial"}
           transition={{ duration: 0.5, type: "spring" }}
         >
           {tabName}
@@ -88,21 +106,38 @@ function Tabs({ data = null, inner }) {
     );
   });
 
-  // const tabContents = data.map(({ id, tabContent }) => (
-  //   <li className={`${b("tab-content")}`} key={id}>
-  //     {tabContent}
-  //   </li>
-  // ));
+  const tabContents = data.map(({ id, tabContent }) => {
+    const isActive = id === activeTabID;
+
+    const tabContentEl = (
+      <motion.div
+        className={`${b("tab-content")} t-typo-p2 ui-color--t-secondary`}
+        key={id}
+        variants={VARIANTS}
+        initial="contentInitial"
+        animate="contentActive"
+        transition={TRANSITIONS.content}
+        dangerouslySetInnerHTML={{ __html: tabContent }}
+      ></motion.div>
+    );
+
+    return isActive && tabContentEl;
+  });
 
   return (
     <div className={b()}>
+      {/* Tabs */}
       <ul
-        className={`${b("tab-names")} ui-hide-scrollbar ui-list`}
+        className={`${b("tab-names-container")} ui-hide-scrollbar ui-list`}
         ref={tabNameList}
       >
         {tabNames}
       </ul>
-      {/* <ul className={`${b("tab-contents")} ui-list`}>{tabContents}</ul> */}
+
+      {/* Tab content */}
+      <div className={`${b("tab-contents-container")} ui-list`}>
+        {tabContents}
+      </div>
     </div>
   );
 }
