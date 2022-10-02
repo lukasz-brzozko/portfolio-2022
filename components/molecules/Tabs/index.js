@@ -33,7 +33,7 @@ const TRANSITIONS = {
     mass: 0.3,
     opacity: {
       type: "ease",
-      duration: 0.2,
+      duration: 0.12,
     },
   },
 };
