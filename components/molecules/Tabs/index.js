@@ -38,16 +38,9 @@ const TRANSITIONS = {
   },
 };
 
-function Tabs({ data = null, inner }) {
+function Tabs({ data = null, inner = null }) {
   const [activeTabID, setActiveTabID] = useState(null);
   const tabNameList = useRef(null);
-
-  useEffect(() => {
-    const { current: innerEl } = inner;
-    const { paddingLeft } = getComputedStyle(innerEl);
-
-    const paddingLeftParsed = parseInt(paddingLeft, 10);
-  }, [inner]);
 
   const scrollTabNameList = (clickedTab) => {
     if (window.innerWidth >= BREAKPOINTS.tablet) return;
@@ -96,6 +89,8 @@ function Tabs({ data = null, inner }) {
             active: isActive,
           })} t-typo-h5 ui-relative ui-color--t-primary`}
           data-id={id}
+          data-active={isActive}
+          data-testid={id}
           variants={TAB_VARIANTS}
           initial="tabInitial"
           animate={isActive ? "tabActive" : "tabInitial"}
