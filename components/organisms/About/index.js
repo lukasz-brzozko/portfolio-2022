@@ -25,7 +25,7 @@ function About({ data = null }) {
     );
 
   return (
-    <section className={`ui-bg--bg-secondary ui-section-padding`}>
+    <section className={`${b()} ui-bg--bg-secondary ui-section-padding`}>
       <Inner ref={innerRef}>
         <Grid>
           {/* IMG */}
