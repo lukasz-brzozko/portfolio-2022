@@ -10,4 +10,12 @@
       grid-column: 3/-3;
     }
   }
+
+  &__project {
+    grid-column: 1/-1;
+
+    @include media(tablet) {
+      grid-column: span 4;
+    }
+  }
 }
