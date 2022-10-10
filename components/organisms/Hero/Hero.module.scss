@@ -1,6 +1,4 @@
-@use "../../../styles/base/functions" as *;
-@use "../../../styles/base/mixins" as *;
-@use "../../../styles/base/media-config" as *;
+@use "../../../styles/base/" as *;
 
 .hero {
   position: relative;

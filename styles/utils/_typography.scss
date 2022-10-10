@@ -1,5 +1,9 @@
 @use "../base/" as *;
 
+.t-center {
+  text-align: center;
+}
+
 .t-typo-h1 {
   @include typo-h1();
 }
