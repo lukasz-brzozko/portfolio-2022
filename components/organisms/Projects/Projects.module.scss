@@ -1,0 +1,13 @@
+@use "../../../styles/base/" as *;
+
+.projects {
+  min-height: 100vh;
+
+  &__text-block-wrapper {
+    grid-column: 1/-1;
+
+    @include media(tablet) {
+      grid-column: 3/-3;
+    }
+  }
+}
