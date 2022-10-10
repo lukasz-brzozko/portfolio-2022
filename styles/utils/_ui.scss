@@ -1,6 +1,4 @@
-@use "./mixins" as *;
-@use "./variables" as *;
-@use "./media-config" as *;
+@use "../base" as *;
 
 .ui-bg {
   @include background-modifiers;
@@ -107,4 +105,8 @@
 
 .ui-no-events {
   pointer-events: none;
+}
+
+.ui-section-padding {
+  padding: rv(60, 120) 0;
 }

@@ -1,0 +1,8 @@
+@use "../../../styles/base/" as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 12), 1fr);
+
+  column-gap: rv(20, 60);
+}

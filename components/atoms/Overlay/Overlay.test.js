@@ -1,4 +1,4 @@
-import Overlay from "./Overlay";
+import Overlay from ".";
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 

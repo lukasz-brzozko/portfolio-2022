@@ -1,4 +1,4 @@
-import "../styles/base/_variables-css.scss";
+import "../styles/base/cssVars/_index.scss";
 import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {

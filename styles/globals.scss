@@ -1,4 +1,5 @@
 @use "./base" as *;
+@use "./utils" as *;
 
 ::selection {
   color: color(t-primary);
@@ -10,6 +11,8 @@ html,
 body {
   margin: 0;
   padding: 0;
+
+  color: color(t-primary);
 
   font-family: font(main);
 }

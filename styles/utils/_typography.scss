@@ -1,0 +1,25 @@
+@use "../base/" as *;
+
+.t-typo-h1 {
+  @include typo-h1();
+}
+
+.t-typo-h2 {
+  @include typo-h2();
+}
+
+.t-typo-h5 {
+  @include typo-h5();
+}
+
+.t-typo-p1 {
+  @include typo-p1();
+}
+
+.t-typo-p2 {
+  @include typo-p2();
+}
+
+.t-typo-caption {
+  @include typo-caption();
+}
