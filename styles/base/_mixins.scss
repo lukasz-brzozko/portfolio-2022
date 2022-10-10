@@ -143,3 +143,10 @@
     font-size: rv(15);
   }
 }
+
+@mixin grid($cols: 12) {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, $cols), 1fr);
+
+  column-gap: rv(20, 60);
+}
