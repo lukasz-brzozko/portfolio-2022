@@ -22,6 +22,10 @@ function ProjectCard({ data = null, onClick }) {
       onClick={() => setSelectedProjectID(id)}
     >
       <IMG image={img} />
+
+      <div className={`${b("text-block")} ui-relative`}>
+        <h4 className={`${b("title")} t-typo-h4`}>{title}</h4>
+      </div>
     </motion.div>
   );
 }

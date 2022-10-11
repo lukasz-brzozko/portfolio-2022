@@ -2,6 +2,17 @@
 
 .project-card {
   height: get-vh(600, "desktop");
+  padding: rv(40);
 
   cursor: pointer;
+
+  &__text-block {
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+  }
 }
