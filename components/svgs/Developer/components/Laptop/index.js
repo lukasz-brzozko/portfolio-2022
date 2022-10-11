@@ -3,7 +3,7 @@
 import { animations, motion, useAnimation } from "framer-motion";
 import { useCallback, useContext, useEffect, useState } from "react";
 
-import { DeveloperContext } from "../../index";
+import { DeveloperContext } from "../../../../../contexts/DeveloperContext";
 
 function Laptop() {
   const isSVGInView = useContext(DeveloperContext);
