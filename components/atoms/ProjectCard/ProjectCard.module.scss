@@ -1,3 +1,7 @@
+@use "../../../styles/base/" as *;
+
 .project-card {
-  height: 600px;
+  height: get-vh(600, "desktop");
+
+  cursor: pointer;
 }
