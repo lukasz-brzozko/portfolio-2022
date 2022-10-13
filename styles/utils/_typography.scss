@@ -31,3 +31,7 @@
 .t-typo-caption {
   @include typo-caption();
 }
+
+.t-typo-btn {
+  @include typo-btn();
+}

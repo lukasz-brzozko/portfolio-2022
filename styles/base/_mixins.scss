@@ -151,6 +151,15 @@
   }
 }
 
+@mixin typo-btn {
+  font-weight: font-weight(regular);
+  font-size: rv(14);
+  font-family: font(main);
+  line-height: 2.42;
+  letter-spacing: rv(0.2);
+  text-transform: uppercase;
+}
+
 @mixin grid($cols: 12) {
   display: grid;
   grid-template-columns: repeat(var(--cols, $cols), 1fr);
