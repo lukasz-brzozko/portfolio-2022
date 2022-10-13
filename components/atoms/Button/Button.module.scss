@@ -1,0 +1,13 @@
+@use "sass:color";
+
+@use "../../../styles/base/" as *;
+
+.button {
+  padding: 0 rv(23);
+
+  color: color(t-primary);
+
+  background-color: transparent;
+  border: 2px solid rgb(var(--color-primary-rgb)/ 30%);
+  cursor: pointer;
+}
