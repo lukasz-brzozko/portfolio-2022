@@ -1,10 +1,13 @@
 import block from "bem-css-modules";
 // import { VARIANTS, VARIANTS_NAMES } from "../../../constants/animations";
 // import IMG from "../../atoms/IMG";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import { ProjectContext } from "../../../contexts/ProjectContext";
+import Button from "../../atoms/Button";
+import Portal from "../../molecules/Portal";
+import ProjectModal from "../../molecules/ProjectModal";
 import IMG from "../../atoms/IMG";
 import ProjectCard from "../../atoms/ProjectCard";
 import Grid from "../../layout/Grid";
@@ -55,25 +58,10 @@ function Projects({ data }) {
           <ul className={`ui-list ui-grid`}>{projectsItems}</ul>
         </Inner>
 
-        <AnimatePresence>
-          {selectedProjectID && (
-            <motion.div
-              className={b("modal")}
-              onClick={() => setSelectedProjectID(null)}
-              layoutId={selectedProjectID}
-            >
-              <motion.div>
-                {projectsList.find((el) => el.id === selectedProjectID).title}
-              </motion.div>
-              <IMG
-                image={
-                  projectsList.find((el) => el.id === selectedProjectID)
-                    .attributes.img
-                }
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Project modal */}
+        <Portal>
+          <ProjectModal projects={projectsList} />
+        </Portal>
       </section>
     </ProjectContext.Provider>
   );

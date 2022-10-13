@@ -1,9 +1,10 @@
 import block from "bem-css-modules";
-import { motion } from "framer-motion";
+import { LayoutGroup, motion } from "framer-motion";
 import { useContext } from "react";
 
 import IMG from "../IMG";
 import { ProjectContext } from "../../../contexts/ProjectContext";
+import Button from "../Button";
 
 import styles from "./ProjectCard.module.scss";
 
@@ -17,15 +18,17 @@ function ProjectCard({ data = null, onClick }) {
 
   return (
     <motion.div
-      layoutId={id}
       className={`${b()} ui-relative`}
       onClick={() => setSelectedProjectID(id)}
     >
-      <IMG image={img} />
+      <motion.div className={`${b("img-wrapper")} ui-relative`}>
+        <IMG image={img} />
+      </motion.div>
 
-      <div className={`${b("text-block")} ui-relative`}>
-        <h4 className={`${b("title")} t-typo-h4`}>{title}</h4>
-      </div>
+      <motion.div className={`${b("text-block")} ui-relative`}>
+        <motion.h4 className={`${b("title")} t-typo-h4`}>{title}</motion.h4>
+        <Button>Zobacz więcej</Button>
+      </motion.div>
     </motion.div>
   );
 }
