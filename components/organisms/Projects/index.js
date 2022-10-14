@@ -1,18 +1,15 @@
 import block from "bem-css-modules";
 // import { VARIANTS, VARIANTS_NAMES } from "../../../constants/animations";
 // import IMG from "../../atoms/IMG";
-import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import { ProjectContext } from "../../../contexts/ProjectContext";
-import Button from "../../atoms/Button";
-import Portal from "../../molecules/Portal";
-import ProjectModal from "../../molecules/ProjectModal";
-import IMG from "../../atoms/IMG";
 import ProjectCard from "../../atoms/ProjectCard";
 import Grid from "../../layout/Grid";
 import Inner from "../../layout/Inner";
+import Portal from "../../molecules/Portal";
 import TextBlock from "../../molecules/TextBlock";
+import ProjectModal from "../../organisms/ProjectModal";
 
 import styles from "./Projects.module.scss";
 
