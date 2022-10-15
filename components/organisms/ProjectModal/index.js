@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
 
 import { ProjectContext } from "../../../contexts/ProjectContext";
+import { useLockBodyScroll } from "../../../hooks/useLockBodyScroll";
 import ProjectModalBanner from "./ProjectModalBanner";
 import ProjectModalInfo from "./ProjectModalInfo";
 
@@ -15,6 +16,9 @@ function ProjectModal({ projects }) {
     useContext(ProjectContext);
 
   const [highlightedProject, setHighlightedProject] = useState(null);
+
+  // Toggle body scroll
+  useLockBodyScroll();
 
   useEffect(() => {
     const chosenProject = projects.find(
