@@ -29,7 +29,7 @@ export async function getStaticProps() {
       myProjects: {
         populate: {
           textBlock: true,
-          projects: { populate: "img" },
+          projects: { populate: ["badges", "gallery", "img"] },
         },
       },
     },

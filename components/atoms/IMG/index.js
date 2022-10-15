@@ -1,5 +1,3 @@
-import block from "bem-css-modules";
-
 import Image from "next/image";
 import { getStrapiMedia } from "../../../lib/media";
 
