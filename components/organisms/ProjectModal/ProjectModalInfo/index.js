@@ -1,4 +1,5 @@
 import block from "bem-css-modules";
+import Badge from "../../../atoms/Badge";
 
 import Grid from "../../../layout/Grid";
 import Inner from "../../../layout/Inner";
@@ -11,7 +12,11 @@ const b = block(styles);
 function ProjectModalInfo({ project }) {
   const { badges, gallery, info } = project?.attributes;
 
-  console.log(badges);
+  const badgesList = badges.map(({ id, text }) => (
+    <li key={id}>
+      <Badge>{text}</Badge>
+    </li>
+  ));
 
   return (
     <div className={`${b()} ui-relative ui-bg--bg-primary`}>
@@ -27,7 +32,9 @@ function ProjectModalInfo({ project }) {
           </div>
 
           <div className={`${b("col", { "col-2": true })}`}>
-            {badges.map((badge) => badge.text)}
+            {badges && (
+              <ul className={`${b("badges")} ui-list`}>{badgesList}</ul>
+            )}
           </div>
         </Grid>
       </Inner>

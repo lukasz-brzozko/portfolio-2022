@@ -18,4 +18,12 @@
       }
     }
   }
+
+  &__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rv(10) rv(5);
+    align-items: center;
+    justify-content: center;
+  }
 }
