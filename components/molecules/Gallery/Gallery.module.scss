@@ -1,1 +1,11 @@
-.gallery{}
+@use "../../../styles/base/" as *;
+
+.gallery {
+  &__img {
+    margin: rv(20) 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

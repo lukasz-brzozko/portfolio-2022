@@ -2,6 +2,7 @@
 
 .info {
   min-height: 50vh;
+  padding-top: rv(40, 80);
 
   &__col {
     grid-column: 1/-1;
@@ -9,6 +10,10 @@
     &--col-1 {
       @include media(tablet) {
         grid-column: 1/span 8;
+      }
+
+      p {
+        margin: rv(20) 0;
       }
     }
 

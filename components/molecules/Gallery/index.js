@@ -1,5 +1,10 @@
+import block from "bem-css-modules";
 import Image from "next/image";
 import { getStrapiMedia } from "../../../lib/media";
+
+import styles from "./Gallery.module.scss";
+
+const b = block(styles);
 
 function Gallery({ data }) {
   const { data: imgs = null } = data;
@@ -12,14 +17,15 @@ function Gallery({ data }) {
       const { alternativeText = "", width, height } = attributes;
 
       return (
-        <Image
-          key={id}
-          width={width}
-          height={height}
-          layout="responsive"
-          src={getStrapiMedia(img)}
-          alt={alternativeText}
-        />
+        <div className={`${b("img")}`} key={id}>
+          <Image
+            width={width}
+            height={height}
+            layout="responsive"
+            src={getStrapiMedia(img)}
+            alt={alternativeText}
+          />
+        </div>
       );
     });
   };
