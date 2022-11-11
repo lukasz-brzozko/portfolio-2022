@@ -1,12 +1,16 @@
 import block from "bem-css-modules";
+
 import Badge from "../../../atoms/Badge";
 import Button from "../../../atoms/Button";
-
 import Grid from "../../../layout/Grid";
 import Inner from "../../../layout/Inner";
 import Gallery from "../../../molecules/Gallery";
+import { BUTTON_PROP_VARIANTS, BUTTON_TYPES } from "../../../atoms/Button";
 
 import styles from "./ProjectModalInfo.module.scss";
+
+const { alt, dark } = BUTTON_PROP_VARIANTS;
+const { link } = BUTTON_TYPES;
 
 const b = block(styles);
 
@@ -21,7 +25,16 @@ function ProjectModalInfo({ project }) {
     </li>
   ));
 
-  const showcaseBtn = showcaseLink ? <Button>Zobacz link</Button> : null;
+  const showcaseBtn = showcaseLink ? (
+    <Button variant={alt} type={link} url={showcaseLink}>
+      Zobacz projekt
+    </Button>
+  ) : null;
+  const repoBtn = repoLink ? (
+    <Button variant={dark} type={link} url={repoLink}>
+      GitHub
+    </Button>
+  ) : null;
 
   return (
     <div className={`${b()} ui-relative ui-bg--bg-primary`}>
@@ -36,12 +49,17 @@ function ProjectModalInfo({ project }) {
             <Gallery data={gallery} />
           </div>
           <div className={`${b("col", { "col-2": true })}`}>
-            {badges && (
-              <ul className={`${b("badges")} ui-list`}>{badgesList}</ul>
-            )}
-          </div>
+            <div className={`${b("badges-container")}`}>
+              {badges && (
+                <ul className={`${b("badges")} ui-list`}>{badgesList}</ul>
+              )}
+            </div>
 
-          {showcaseBtn}
+            <div className={`${b("links")}`}>
+              {showcaseBtn}
+              {repoBtn}
+            </div>
+          </div>
         </Grid>
       </Inner>
     </div>
