@@ -17,7 +17,7 @@ const b = block(styles);
 function ProjectModalInfo({ project }) {
   const { badges, gallery, info, showcaseLink, repoLink } = project?.attributes;
 
-  console.log(project);
+  // console.log(project);
 
   const badgesList = badges.map(({ id, text }) => (
     <li key={id}>
@@ -49,7 +49,7 @@ function ProjectModalInfo({ project }) {
             <Gallery data={gallery} />
           </div>
           <div className={`${b("col", { "col-2": true })}`}>
-            <div className={`${b("badges-container")}`}>
+            <div>
               {badges && (
                 <ul className={`${b("badges")} ui-list`}>{badgesList}</ul>
               )}
