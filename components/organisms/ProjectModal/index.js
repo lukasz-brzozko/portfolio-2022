@@ -39,6 +39,8 @@ function ProjectModal({ projects }) {
               console.log(entry.intersectionRatio);
               modalRefEl.style.opacity = 1 - entry.intersectionRatio;
               // console.log(entry.intersectionRect.height);
+            } else {
+              modalRefEl.style.opacity = 1;
             }
           });
         },
