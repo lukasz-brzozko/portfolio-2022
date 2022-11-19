@@ -6,14 +6,15 @@ import styles from "./ProjectModalCloseArea.module.scss";
 
 const b = block(styles);
 
-const ProjectModalCloseArea = forwardRef(({ project }, ref) => {
+function ProjectModalCloseArea({ project, setCloseAreaRefEl }) {
   return (
-    <div ref={ref} className={`${b()} ui-relative t-typo-h3`}>
+    <div
+      ref={(el) => setCloseAreaRefEl(el)}
+      className={`${b()} ui-relative t-typo-h3`}
+    >
       Powrót do strony
     </div>
   );
-});
-
-ProjectModalCloseArea.displayName = "ProjectModalCloseArea";
+}
 
 export default ProjectModalCloseArea;
