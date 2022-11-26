@@ -9,9 +9,15 @@ import ProjectModalInfo from "./ProjectModalInfo";
 import ProjectModalCloseArea from "./ProjectModalCloseArea";
 
 import styles from "./ProjectModal.module.scss";
+import { useCallback } from "react";
 
 const b = block(styles);
 
+const threshold = [];
+
+for (let i = 0; i < 1.01; i += 0.01) {
+  threshold.push(i);
+}
 function ProjectModal({ projects }) {
   const [modalRefEl, setModalRefEl] = useState(null);
   const [closeAreaRefEl, setCloseAreaRefEl] = useState(null);
@@ -22,13 +28,20 @@ function ProjectModal({ projects }) {
   //   target: closeAreaRef,
   // });
 
-  const threshold = [];
-
-  for (let i = 0; i < 1.01; i += 0.01) {
-    threshold.push(i);
-  }
-
   // ! Dokończyć i zrefaktorować
+
+  const closeModal = useCallback(() => {
+    if (modalRefEl) {
+      modalRefEl.style.opacity = 0;
+
+      setTimeout(() => {
+        setSelectedProjectID(null);
+      }, 300);
+    }
+  }, [setSelectedProjectID, modalRefEl]);
+
+  const { selectedProjectID, setSelectedProjectID } =
+    useContext(ProjectContext);
 
   useEffect(() => {
     if (selectedProjectID && closeAreaRefEl && modalRefEl) {
@@ -36,11 +49,16 @@ function ProjectModal({ projects }) {
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              console.log(entry.intersectionRatio);
-              modalRefEl.style.opacity = 1 - entry.intersectionRatio;
-              // console.log(entry.intersectionRect.height);
+              closeAreaRefEl.style.setProperty(
+                "--progress",
+                entry.intersectionRatio
+              );
+
+              if (entry.intersectionRatio > 0.9) {
+                closeModal();
+              }
             } else {
-              modalRefEl.style.opacity = 1;
+              closeAreaRefEl.style.setProperty("--progress", 0);
             }
           });
         },
@@ -53,10 +71,13 @@ function ProjectModal({ projects }) {
 
       return () => observer.unobserve(closeAreaRefEl);
     }
-  }, [selectedProjectID, closeAreaRefEl, modalRefEl]);
-
-  const { selectedProjectID, setSelectedProjectID } =
-    useContext(ProjectContext);
+  }, [
+    selectedProjectID,
+    setSelectedProjectID,
+    closeModal,
+    closeAreaRefEl,
+    modalRefEl,
+  ]);
 
   // Toggle body scroll
   useLockBodyScroll();
@@ -70,7 +91,7 @@ function ProjectModal({ projects }) {
   }, [selectedProjectID, projects]);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {highlightedProject ? (
         <motion.div
           ref={(el) => {
@@ -78,13 +99,10 @@ function ProjectModal({ projects }) {
           }}
           key={selectedProjectID}
           layoutId={selectedProjectID}
-          className={`${b()}`}
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          onClick={() => {
-            setSelectedProjectID(null);
-          }}
+          className={`${b()} ui-transition`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { duration: 0.1 } }}
+          exit={{ opacity: 0 }}
         >
           {/* Banner */}
           <ProjectModalBanner project={highlightedProject} />
@@ -93,7 +111,10 @@ function ProjectModal({ projects }) {
           <ProjectModalInfo project={highlightedProject} />
 
           {/* Close area */}
-          <ProjectModalCloseArea setCloseAreaRefEl={setCloseAreaRefEl} />
+          <ProjectModalCloseArea
+            setCloseAreaRefEl={setCloseAreaRefEl}
+            closeModal={closeModal}
+          />
         </motion.div>
       ) : null}
     </AnimatePresence>

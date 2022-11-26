@@ -6,13 +6,15 @@ import styles from "./ProjectModalCloseArea.module.scss";
 
 const b = block(styles);
 
-function ProjectModalCloseArea({ project, setCloseAreaRefEl }) {
+function ProjectModalCloseArea({ closeModal, project, setCloseAreaRefEl }) {
   return (
     <div
       ref={(el) => setCloseAreaRefEl(el)}
       className={`${b()} ui-relative t-typo-h3`}
+      style={{ "--progress": 0 }}
+      onClick={closeModal}
     >
-      Powrót do strony
+      <span className={`${b("text")} ui-relative`}>Powrót do strony</span>
     </div>
   );
 }
