@@ -1,15 +1,15 @@
 import block from "bem-css-modules";
-import { AnimatePresence, motion, useScroll } from "framer-motion";
-import { useContext, useEffect, useState, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 import { ProjectContext } from "../../../contexts/ProjectContext";
+import { ProjectModalContext } from "../../../contexts/ProjectModalContext";
 import { useLockBodyScroll } from "../../../hooks/useLockBodyScroll";
 import ProjectModalBanner from "./ProjectModalBanner";
-import ProjectModalInfo from "./ProjectModalInfo";
 import ProjectModalCloseArea from "./ProjectModalCloseArea";
+import ProjectModalInfo from "./ProjectModalInfo";
 
 import styles from "./ProjectModal.module.scss";
-import { useCallback } from "react";
 
 const b = block(styles);
 
@@ -23,10 +23,8 @@ function ProjectModal({ projects }) {
   const [closeAreaRefEl, setCloseAreaRefEl] = useState(null);
   const [highlightedProject, setHighlightedProject] = useState(null);
 
-  // const { scrollYProgress, scrollY } = useScroll({
-  //   container: modalRef,
-  //   target: closeAreaRef,
-  // });
+  const { selectedProjectID, setSelectedProjectID } =
+    useContext(ProjectContext);
 
   // ! Dokończyć i zrefaktorować
 
@@ -39,9 +37,6 @@ function ProjectModal({ projects }) {
       }, 300);
     }
   }, [setSelectedProjectID, modalRefEl]);
-
-  const { selectedProjectID, setSelectedProjectID } =
-    useContext(ProjectContext);
 
   useEffect(() => {
     if (selectedProjectID && closeAreaRefEl && modalRefEl) {
@@ -91,33 +86,36 @@ function ProjectModal({ projects }) {
   }, [selectedProjectID, projects]);
 
   return (
-    <AnimatePresence mode="wait">
-      {highlightedProject ? (
-        <motion.div
-          ref={(el) => {
-            setModalRefEl(el);
-          }}
-          key={selectedProjectID}
-          layoutId={selectedProjectID}
-          className={`${b()} ui-transition`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { duration: 0.1 } }}
-          exit={{ opacity: 0 }}
-        >
-          {/* Banner */}
-          <ProjectModalBanner project={highlightedProject} />
+    <ProjectModalContext.Provider
+      value={{
+        closeModal,
+      }}
+    >
+      <AnimatePresence mode="wait">
+        {highlightedProject ? (
+          <motion.div
+            ref={(el) => {
+              setModalRefEl(el);
+            }}
+            key={selectedProjectID}
+            layoutId={selectedProjectID}
+            className={`${b()} ui-transition`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.1 } }}
+            exit={{ opacity: 0 }}
+          >
+            {/* Banner */}
+            <ProjectModalBanner project={highlightedProject} />
 
-          {/* Description */}
-          <ProjectModalInfo project={highlightedProject} />
+            {/* Description */}
+            <ProjectModalInfo project={highlightedProject} />
 
-          {/* Close area */}
-          <ProjectModalCloseArea
-            setCloseAreaRefEl={setCloseAreaRefEl}
-            closeModal={closeModal}
-          />
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
+            {/* Close area */}
+            <ProjectModalCloseArea setCloseAreaRefEl={setCloseAreaRefEl} />
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </ProjectModalContext.Provider>
   );
 }
 

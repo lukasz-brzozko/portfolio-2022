@@ -1,12 +1,15 @@
-import { motion } from "framer-motion";
-import { forwardRef } from "react";
 import block from "bem-css-modules";
+import { useContext } from "react";
+
+import { ProjectModalContext } from "../../../../contexts/ProjectModalContext";
 
 import styles from "./ProjectModalCloseArea.module.scss";
 
 const b = block(styles);
 
-function ProjectModalCloseArea({ closeModal, project, setCloseAreaRefEl }) {
+function ProjectModalCloseArea({ project, setCloseAreaRefEl }) {
+  const { closeModal } = useContext(ProjectModalContext);
+
   return (
     <div
       ref={(el) => setCloseAreaRefEl(el)}
