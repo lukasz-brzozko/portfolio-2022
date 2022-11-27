@@ -15,7 +15,7 @@ const b = block(styles);
 
 const threshold = [];
 
-for (let i = 0; i < 1.01; i += 0.01) {
+for (let i = 0; i <= 1.0; i += 0.01) {
   threshold.push(i);
 }
 function ProjectModal({ projects }) {
@@ -29,14 +29,28 @@ function ProjectModal({ projects }) {
   // ! Dokończyć i zrefaktorować
 
   const closeModal = useCallback(() => {
-    if (modalRefEl) {
-      modalRefEl.style.opacity = 0;
+    if (!modalRefEl) return;
+    modalRefEl.style.opacity = 0;
+  }, [modalRefEl]);
 
-      setTimeout(() => {
-        setSelectedProjectID(null);
-      }, 300);
+  const handleModalTransition = useCallback(
+    ({ target, propertyName }) => {
+      if (propertyName !== "opacity") return;
+      if (target.style.opacity !== "0") return;
+
+      setSelectedProjectID(null);
+    },
+    [setSelectedProjectID]
+  );
+
+  useEffect(() => {
+    if (modalRefEl) {
+      modalRefEl.addEventListener("transitionend", handleModalTransition);
     }
-  }, [setSelectedProjectID, modalRefEl]);
+
+    return () =>
+      modalRefEl?.removeEventListener("transitionend", handleModalTransition);
+  }, [modalRefEl, handleModalTransition]);
 
   useEffect(() => {
     if (selectedProjectID && closeAreaRefEl && modalRefEl) {

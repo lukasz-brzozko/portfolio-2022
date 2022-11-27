@@ -1,6 +1,7 @@
 import block from "bem-css-modules";
 import { motion } from "framer-motion";
 
+import CloseBtn from "../../../atoms/CloseBtn";
 import IMG from "../../../atoms/IMG";
 import Inner from "../../../layout/Inner";
 
@@ -18,6 +19,8 @@ function ProjectModalBanner({ project }) {
           {project?.attributes.title}
         </motion.div>
       </Inner>
+
+      <CloseBtn />
     </div>
   );
 }
