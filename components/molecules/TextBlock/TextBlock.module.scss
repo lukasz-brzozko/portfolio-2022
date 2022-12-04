@@ -1,7 +1,13 @@
+@use "../../../styles/base/" as *;
+
 .text-block {
   width: 100%;
 
   &__title {
     margin-bottom: rv(8);
+  }
+
+  &__desc {
+    margin: 0;
   }
 }

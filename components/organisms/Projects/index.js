@@ -52,7 +52,7 @@ function Projects({ data }) {
           </Grid>
 
           {/* Projects list */}
-          <ul className={`ui-list ui-grid`}>{projectsItems}</ul>
+          <ul className={`${b("list")} ui-list ui-grid`}>{projectsItems}</ul>
         </Inner>
 
         {/* Project modal */}

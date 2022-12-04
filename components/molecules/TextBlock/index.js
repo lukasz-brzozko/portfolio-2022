@@ -26,7 +26,11 @@ function TextBlock({ data = null }) {
       viewport={{ once: false, margin: "0px 0px -20% 0px" }}
     >
       {title && (
-        <motion.h2 custom={0} variants={VARIANTS} className="title t-typo-h2">
+        <motion.h2
+          custom={0}
+          variants={VARIANTS}
+          className={`${b("title")} t-typo-h2`}
+        >
           {title}
         </motion.h2>
       )}
@@ -34,7 +38,7 @@ function TextBlock({ data = null }) {
         <motion.p
           custom={1}
           variants={VARIANTS}
-          className="t-typo-p1 ui-color--t-secondary"
+          className={`${b("desc")} t-typo-p1 ui-color--t-secondary`}
         >
           {desc}
         </motion.p>
