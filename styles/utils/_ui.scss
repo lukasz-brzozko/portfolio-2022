@@ -95,6 +95,10 @@
   @include transition;
 }
 
+.ui-grid {
+  @include grid;
+}
+
 .ui-block {
   display: block;
 }

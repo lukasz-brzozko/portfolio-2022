@@ -1,0 +1,15 @@
+@use "sass:color";
+
+@use "../../../styles/base/" as *;
+
+.badge {
+  display: inline-block;
+  padding: 0 rv(18);
+
+  color: color(t-primary);
+  font-size: rv(12);
+
+  background-color: transparent;
+  border: 2px solid rgb(var(--color-primary-rgb)/ 30%);
+  border-radius: rv(60);
+}

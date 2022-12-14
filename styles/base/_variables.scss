@@ -65,3 +65,4 @@ $size-inner-width: 1320px;
 $size-inner-padding: 1rem;
 $size-inner-padding-medium: 2.75rem;
 $size-inner-padding-responsive: #{math.div(120, $desktopWidth) * 100 + "vw"};
+$size-inner-padding-responsive-wide: #{math.div(60, $desktopWidth) * 100 + "vw"};

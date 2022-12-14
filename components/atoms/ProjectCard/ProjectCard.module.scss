@@ -1,0 +1,44 @@
+@use "../../../styles/base/" as *;
+
+.project-card {
+  height: get-vh(600, "desktop");
+  padding: rv(40);
+
+  cursor: pointer;
+
+  &__text-block {
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+  }
+
+  &__img-wrapper,
+  &__img-overlay,
+  &__img-inner,
+  &__img-inner::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+  }
+
+  &__img-inner::after {
+    background-color: rgb(25 25 25 / 37%);
+
+    content: "";
+  }
+
+  &__img-overlay {
+    background-image: linear-gradient(var(--color-secondary), rgb(var(--color-black-rgb)));
+  }
+
+  &__title {
+    margin-bottom: rv(25, 35);
+  }
+}

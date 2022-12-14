@@ -1,7 +1,13 @@
 :root {
-  --color-t-primary: #fff;
+  --color-primary-rgb: 255 255 255;
+  --color-t-primary-rgb: rgb(var(--color-primary-rgb));
+  --color-t-primary: rgb(255 255 255);
   --color-t-secondary: rgb(198 201 216 / 75%);
+  --color-bg-primary-rgb: 16 16 16;
   --color-bg-primary: #101010;
   --color-bg-secondary: #191919;
-  --color-secondary: #f9004d;
+  --color-secondary: rgb(249 0 77);
+  --color-secondary-rgb: 249 0 77;
+  --color-secondary-transparent: rgb(249 0 77 / 0%);
+  --color-black-rgb: 0 0 0;
 }

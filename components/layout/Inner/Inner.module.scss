@@ -13,4 +13,9 @@
 
 .inner {
   @include inner;
+
+  &--wide {
+    padding-right: var(--inner-padding-wide);
+    padding-left: var(--inner-padding-wide);
+  }
 }

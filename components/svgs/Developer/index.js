@@ -2,8 +2,9 @@
 /* eslint-disable react/display-name */
 import block from "bem-css-modules";
 import { motion, useInView } from "framer-motion";
-import { createContext, useRef } from "react";
+import { useRef } from "react";
 
+import { DeveloperContext } from "../../../contexts/DeveloperContext";
 import DesktopScreen from "./components/desktopScreen";
 import Laptop from "./components/Laptop";
 import Mug from "./components/Mug";
@@ -11,8 +12,6 @@ import Mug from "./components/Mug";
 import styles from "./Developer.module.scss";
 
 const b = block(styles);
-
-export const DeveloperContext = createContext();
 
 function Developer() {
   const refSVG = useRef(null);

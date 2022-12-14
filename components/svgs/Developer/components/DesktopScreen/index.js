@@ -3,7 +3,7 @@
 import { motion, useAnimation } from "framer-motion";
 import { useCallback, useContext, useEffect, useState } from "react";
 
-import { DeveloperContext } from "../../index";
+import { DeveloperContext } from "../../../../../contexts/DeveloperContext";
 
 const transition = (i, dynamicDelay = true) => ({
   delay: dynamicDelay ? i * 0.3 : 0,

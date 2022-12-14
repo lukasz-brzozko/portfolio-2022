@@ -5,11 +5,12 @@ import styles from "./Inner.module.scss";
 
 const b = block(styles);
 
-const Inner = forwardRef(({ children, className }, ref) => {
-  const classNameText = className ? ` ${className}` : "";
+const Inner = forwardRef(({ children, className, wide = false }, ref) => {
+  const customClasses = className ? ` ${className}` : "";
+  const baseClassName = wide ? ` ${b(null, { wide: true })}` : b();
 
   return (
-    <div ref={ref} className={`${b()}${classNameText}`}>
+    <div ref={ref} className={`${baseClassName}${customClasses}`}>
       {children}
     </div>
   );

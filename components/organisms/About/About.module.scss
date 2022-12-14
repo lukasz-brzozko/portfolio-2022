@@ -2,8 +2,9 @@
 
 .about {
   display: grid;
-  min-height: 100vh;
   place-items: center;
+
+  min-height: 100vh;
 
   &__img-wrapper,
   &__text-block-wrapper {

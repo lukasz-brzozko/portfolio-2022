@@ -2,12 +2,15 @@
 
 :root {
   --inner-padding: #{$size-inner-padding};
+  --inner-padding-wide: #{$size-inner-padding};
 
   @include media(mobile) {
     --inner-padding: #{$size-inner-padding-medium};
+    --inner-padding-wide: #{$size-inner-padding-medium};
   }
 
   @include media(tablet) {
     --inner-padding: #{$size-inner-padding-responsive};
+    --inner-padding-wide: #{$size-inner-padding-responsive-wide};
   }
 }
