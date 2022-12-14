@@ -36,7 +36,9 @@ function About({ data = null }) {
             <TextBlock data={textBlock} />
 
             {/* Tabs content */}
-            <Tabs data={tabs} inner={innerRef} />
+            <div className={`${b("tabs-wrapper")}`}>
+              <Tabs data={tabs} inner={innerRef} />
+            </div>
           </div>
         </Grid>
       </Inner>
