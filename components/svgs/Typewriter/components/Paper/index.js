@@ -1,14 +1,12 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/display-name */
 
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { useContext } from "react";
+import { motion, useAnimationControls } from "framer-motion";
+import { useCallback, useContext, useEffect, useRef } from "react";
 
 import { TypewriterContext } from "../../../../../contexts/TypewriterContext";
 
 const transition = (i) => ({
-  delay: i * 0.15,
   type: "spring",
   damping: 9,
   velocity: 3,
@@ -32,11 +30,51 @@ const BAR_VARIANTS = {
 };
 
 function Paper() {
-  const isSVGInView = useContext(TypewriterContext);
+  const {
+    isInView: isSVGInView,
+    activeBarIndex,
+    barStep,
+  } = useContext(TypewriterContext);
 
-  const [isAnimationInitiated, setIsAnimationInitiated] = useState(false);
+  const controlsOne = useAnimationControls();
+  const controlsTwo = useAnimationControls();
+  const controlsThree = useAnimationControls();
+  const controlsFour = useAnimationControls();
+  const controlsFive = useAnimationControls();
+  const controlsSix = useAnimationControls();
+
+  const barRefs = useRef([]);
 
   const activeCondition = isSVGInView ? "active" : false;
+
+  const controlsAnimation = useCallback(() => {
+    return { x: -238.47977, y: -171.03678, scaleX: barStep };
+  }, [barStep]);
+
+  useEffect(() => {
+    if (activeBarIndex === 0) {
+      controlsOne.start(controlsAnimation);
+    } else if (activeBarIndex === 1) {
+      controlsTwo.start(controlsAnimation);
+    } else if (activeBarIndex === 2) {
+      controlsThree.start(controlsAnimation);
+    } else if (activeBarIndex === 3) {
+      controlsFour.start(controlsAnimation);
+    } else if (activeBarIndex === 4) {
+      controlsFive.start(controlsAnimation);
+    } else if (activeBarIndex === 5) {
+      controlsSix.start(controlsAnimation);
+    }
+  }, [
+    controlsOne,
+    controlsTwo,
+    controlsThree,
+    controlsFour,
+    controlsFive,
+    controlsSix,
+    controlsAnimation,
+    activeBarIndex,
+  ]);
 
   return (
     <motion.g className="paper">
@@ -55,45 +93,45 @@ function Paper() {
         transform="translate(-238.47977 -171.03678)"
         fill="#e6e6e6"
         initial="initial"
-        animate={activeCondition}
+        animate={activeBarIndex === 0 ? controlsOne : false}
         variants={BAR_VARIANTS}
-        transition={transition(0)}
+        transition={transition}
       />
       <motion.path
         d="M755.99671,320.03678h-319a6.5,6.5,0,0,1,0-13h319a6.5,6.5,0,0,1,0,13Z"
         transform="translate(-238.47977 -171.03678)"
         fill="#e6e6e6"
         initial="initial"
-        animate={activeCondition}
+        animate={activeBarIndex === 1 ? controlsTwo : false}
         variants={BAR_VARIANTS}
-        transition={transition(1)}
+        transition={transition}
       />
       <motion.path
         d="M755.99671,351.53678h-319a6.5,6.5,0,0,1,0-13h319a6.5,6.5,0,0,1,0,13Z"
         transform="translate(-238.47977 -171.03678)"
         fill="#e6e6e6"
         initial="initial"
-        animate={activeCondition}
+        animate={activeBarIndex === 2 ? controlsThree : false}
         variants={BAR_VARIANTS}
-        transition={transition(2)}
+        transition={transition}
       />
       <motion.path
         d="M755.99671,383.03678h-319a6.5,6.5,0,0,1,0-13h319a6.5,6.5,0,0,1,0,13Z"
         transform="translate(-238.47977 -171.03678)"
         fill="#e6e6e6"
         initial="initial"
-        animate={activeCondition}
+        animate={activeBarIndex === 3 ? controlsFour : false}
         variants={BAR_VARIANTS}
-        transition={transition(3)}
+        transition={transition}
       />
       <motion.path
         d="M755.99671,414.53678h-319a6.5,6.5,0,0,1,0-13h319a6.5,6.5,0,0,1,0,13Z"
         transform="translate(-238.47977 -171.03678)"
         fill="#e6e6e6"
         initial="initial"
-        animate={activeCondition}
+        animate={activeBarIndex === 4 ? controlsFive : false}
         variants={BAR_VARIANTS}
-        transition={transition(4)}
+        transition={transition}
       />
       <motion.path
         d="M755.99671,446.03678h-319a6.5,6.5,0,0,1,0-13h319a6.5,6.5,0,0,1,0,13Z"
@@ -101,9 +139,9 @@ function Paper() {
         fill="#6c63ff"
         style={{ fill: "var(--color-secondary)" }}
         initial="initial"
-        animate={activeCondition}
+        animate={activeBarIndex === 5 ? controlsSix : false}
         variants={BAR_VARIANTS}
-        transition={transition(5)}
+        transition={transition}
       />
     </motion.g>
   );

@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/display-name */
 import block from "bem-css-modules";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { useRef, useState } from "react";
 
 import { TypewriterContext } from "../../../contexts/TypewriterContext";
 import Keyboard from "./components/Keyboard";
@@ -13,12 +13,21 @@ import styles from "./Typewriter.module.scss";
 
 const b = block(styles);
 
-function Developer() {
+function Typewriter() {
   const refSVG = useRef(null);
-  const isInView = useInView(refSVG, { margin: "0px 0px -20% 0px" });
+
+  const [activeBarIndex, setActiveBarIndex] = useState(0);
+  const [barStep, setBarStep] = useState(0);
 
   return (
-    <TypewriterContext.Provider value={isInView}>
+    <TypewriterContext.Provider
+      value={{
+        activeBarIndex,
+        barStep,
+        setActiveBarIndex,
+        setBarStep,
+      }}
+    >
       <motion.svg
         ref={refSVG}
         className={b()}
@@ -45,4 +54,4 @@ function Developer() {
   );
 }
 
-export default Developer;
+export default Typewriter;
