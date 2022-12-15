@@ -1,7 +1,9 @@
 import block from "bem-css-modules";
-import Hero from "../components/organisms/Hero";
-import About from "../components/organisms/About";
 import { fetchAPI } from "../lib/api";
+
+import About from "../components/organisms/About";
+import Contact from "../components/organisms/Contact";
+import Hero from "../components/organisms/Hero";
 import Projects from "../components/organisms/Projects";
 
 block.setSettings({
@@ -9,14 +11,15 @@ block.setSettings({
 });
 
 function Home({ homepage }) {
-  const { hero, about, myProjects } = homepage.data.attributes;
+  const { hero, about, myProjects, contact } = homepage.data.attributes;
 
   return (
     <>
       {/* <Hero data={hero} />
-      <About data={about} /> */}
-      <Projects data={myProjects} />
-      <div style={{ height: "300vh" }}></div>
+      <About data={about} />
+      <Projects data={myProjects} /> */}
+      <Contact data={contact} />
+      {/* <div style={{ height: "300vh" }}></div> */}
     </>
   );
 }
@@ -32,6 +35,7 @@ export async function getStaticProps() {
           projects: { populate: ["badges", "gallery", "img"] },
         },
       },
+      contact: { populate: ["textBlock", "img"] },
     },
   });
 

@@ -1,0 +1,41 @@
+@use "../../../styles/base/" as *;
+
+.contact {
+  display: grid;
+  place-items: center;
+
+  min-height: 100vh;
+
+  &__img-wrapper,
+  &__text-block-wrapper {
+    grid-column: 1/-1;
+  }
+
+  &__img-wrapper {
+    display: flex;
+    align-items: center;
+    max-height: rv(600);
+
+    @include media(0, tablet) {
+      margin-bottom: rv(20);
+    }
+
+    @include media(tablet) {
+      grid-column: 8/-1;
+    }
+  }
+
+  &__img {
+    border-radius: rv(8);
+  }
+
+  &__text-block-wrapper {
+    @include media(tablet) {
+      grid-column: 1 / span 6;
+    }
+  }
+
+  &__tabs-wrapper {
+    margin-top: rv(30);
+  }
+}
