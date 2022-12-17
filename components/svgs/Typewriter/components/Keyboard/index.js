@@ -12,9 +12,15 @@ import styles from "./Keyboard.module.scss";
 const b = block(styles);
 
 const KEY_VARIANTS = {
-  initial: { fill: "#e6e6e6" },
-  active: { fill: "var(--color-secondary)" },
+  initial: { fill: "#e6e6e6", scale: 1, x: -238.47977, y: -171.03678 },
+  hover: { fill: "var(--color-secondary)" },
+  active: {
+    fill: "var(--color-secondary)",
+    scale: 0.9,
+  },
 };
+
+const BAR_STEP = 0.25;
 
 function Keyboard() {
   const { activeBarIndex, setActiveBarIndex, barRefs, barStep, setBarStep } =
@@ -23,11 +29,13 @@ function Keyboard() {
   const handleKeyClick = (e) => {
     if (activeBarIndex > 5) return;
 
-    setBarStep((prevStep) => (prevStep <= 0.9 ? (prevStep += 0.1) : prevStep));
+    setBarStep((prevStep) =>
+      prevStep <= 1 - BAR_STEP ? (prevStep += BAR_STEP) : prevStep
+    );
 
-    if (barStep > 0.9) {
+    if (barStep > 1 - BAR_STEP) {
       setActiveBarIndex(activeBarIndex + 1);
-      setBarStep(0);
+      setBarStep(BAR_STEP);
     }
   };
 
@@ -42,6 +50,8 @@ function Keyboard() {
       {/* Keys */}
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M351.24671,541.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -51,6 +61,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M412.24671,541.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -60,6 +72,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M473.24671,541.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -69,6 +83,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M534.24671,541.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -78,6 +94,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M595.24671,541.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -87,6 +105,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M656.24671,541.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -96,6 +116,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M717.24671,541.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -105,6 +127,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M778.24671,541.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -114,6 +138,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M839.24671,541.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -123,6 +149,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M379.74671,575.53678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -132,6 +160,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M440.74671,575.53678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -141,6 +171,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M501.74671,575.53678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -150,6 +182,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M562.74671,575.53678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -159,6 +193,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M623.74671,575.53678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -168,6 +204,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M684.74671,575.53678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -177,6 +215,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M745.74671,575.53678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -186,6 +226,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M806.74671,575.53678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -195,6 +237,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M867.74671,575.53678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -204,6 +248,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M351.24671,608.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -213,6 +259,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M412.24671,608.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -222,6 +270,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M473.24671,608.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -231,6 +281,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M534.24671,608.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -240,6 +292,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M595.24671,608.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -249,6 +303,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M656.24671,608.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -258,6 +314,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M717.24671,608.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -267,6 +325,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M778.24671,608.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -276,6 +336,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M839.24671,608.03678h-19a16,16,0,0,0,0,32h19a16,16,0,0,0,0-32Z"
@@ -285,6 +347,8 @@ function Keyboard() {
       />
       <motion.path
         whileTap="active"
+        whileHover="hover"
+        initial="initial"
         variants={KEY_VARIANTS}
         className={b("key")}
         d="M702.99671,654.04148h-206a16,16,0,0,0,0,32h206a16,16,0,0,0,0-32Z"
