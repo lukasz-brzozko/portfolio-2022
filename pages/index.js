@@ -15,11 +15,10 @@ function Home({ homepage }) {
 
   return (
     <>
-      {/* <Hero data={hero} />
+      <Hero data={hero} />
       <About data={about} />
-      <Projects data={myProjects} /> */}
+      <Projects data={myProjects} />
       <Contact data={contact} />
-      {/* <div style={{ height: "300vh" }}></div> */}
     </>
   );
 }
