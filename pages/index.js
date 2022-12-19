@@ -3,6 +3,7 @@ import { fetchAPI } from "../lib/api";
 
 import About from "../components/organisms/About";
 import Contact from "../components/organisms/Contact";
+import Header from "../components/organisms/Header";
 import Hero from "../components/organisms/Hero";
 import Projects from "../components/organisms/Projects";
 
@@ -10,15 +11,19 @@ block.setSettings({
   modifierDelimiter: "--",
 });
 
-function Home({ homepage }) {
+function Home({ homepage, navigation }) {
   const { hero, about, myProjects, contact } = homepage.data.attributes;
 
   return (
     <>
-      <Hero data={hero} />
-      <About data={about} />
-      <Projects data={myProjects} />
-      <Contact data={contact} />
+      <Header data={navigation} />
+
+      <main>
+        <Hero data={hero} />
+        <About data={about} />
+        <Projects data={myProjects} />
+        <Contact data={contact} />
+      </main>
     </>
   );
 }
@@ -38,9 +43,14 @@ export async function getStaticProps() {
     },
   });
 
+  const navigation = await fetchAPI("/navigation", {
+    populate: { Menu: { populate: { Menu: true } } },
+  });
+
   return {
     props: {
       homepage,
+      navigation,
     },
   };
 }

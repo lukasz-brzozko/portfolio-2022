@@ -42,7 +42,10 @@ function Projects({ data }) {
         setSelectedProjectID,
       }}
     >
-      <section className={`${b()} ui-bg--bg-primary ui-section-padding`}>
+      <section
+        id="portfolio"
+        className={`${b()} ui-bg--bg-primary ui-section-padding`}
+      >
         <Inner>
           <Grid>
             {/* Text block */}

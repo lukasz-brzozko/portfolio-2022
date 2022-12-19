@@ -25,7 +25,10 @@ function About({ data = null }) {
     );
 
   return (
-    <section className={`${b()} ui-bg--bg-secondary ui-section-padding`}>
+    <section
+      id="about"
+      className={`${b()} ui-bg--bg-secondary ui-section-padding ui-overflow`}
+    >
       <Inner ref={innerRef}>
         <Grid>
           {/* IMG */}

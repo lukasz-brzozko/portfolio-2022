@@ -26,7 +26,10 @@ function Contact({ data = null }) {
     );
 
   return (
-    <section className={`${b()} ui-bg--bg-secondary ui-section-padding`}>
+    <section
+      id="contact"
+      className={`${b()} ui-bg--bg-secondary ui-section-padding`}
+    >
       <Inner ref={innerRef}>
         <Grid>
           {/* Text block */}
