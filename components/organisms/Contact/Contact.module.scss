@@ -1,0 +1,63 @@
+@use "../../../styles/base/" as *;
+
+.contact {
+  display: grid;
+  place-items: center;
+
+  min-height: 100vh;
+
+  &__img-wrapper,
+  &__text-block-wrapper {
+    grid-column: 1/-1;
+  }
+
+  &__img-wrapper {
+    display: flex;
+    align-items: center;
+    max-height: rv(310, 600, 1600);
+
+    @include media(0, tablet) {
+      margin-bottom: rv(20);
+    }
+
+    @include media(tablet) {
+      grid-column: 8/-1;
+    }
+
+    &--custom-img {
+      height: rv(310, 600, 1600);
+    }
+
+    & > span {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  &__img {
+    border-radius: rv(8);
+  }
+
+  &__text-block-wrapper {
+    @include media(tablet) {
+      grid-column: 1 / span 6;
+    }
+
+    @include media(desktop) {
+      grid-column: 1 / span 5;
+    }
+  }
+
+  &__tabs-wrapper {
+    margin-top: rv(30);
+  }
+
+  &__mail {
+    display: inline-block;
+    margin-top: rv(20, 60);
+
+    @include media(0, tablet) {
+      margin-bottom: 60px;
+    }
+  }
+}
