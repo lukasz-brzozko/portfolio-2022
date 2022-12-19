@@ -1,4 +1,5 @@
 import block from "bem-css-modules";
+import { motion } from "framer-motion";
 
 import Grid from "../../layout/Grid";
 import Inner from "../../layout/Inner";
@@ -28,7 +29,10 @@ function Header({ data }) {
         <Grid>
           {/* Logo */}
           <div className={`${b("logo")} ui-hide-0-tablet`}>
-            <a className={`${b("link")} t-typo-menu`} href="#">
+            <a
+              className={`${b("link", { active: true })} t-typo-menu`}
+              href="#"
+            >
               Łukasz Brzózko
             </a>
           </div>

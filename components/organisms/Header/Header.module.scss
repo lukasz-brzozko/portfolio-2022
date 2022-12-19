@@ -44,7 +44,35 @@
   }
 
   &__link {
+    @include transition(500ms);
+
     display: inline-block;
     padding: rv(20) 0;
+
+    color: var(--t-primary);
+
+    &::after {
+      @include transition(300ms, cubic-bezier(0, 0.41, 0, 1.4));
+
+      display: block;
+      width: 0;
+      height: rv(2);
+
+      margin-top: rv(3);
+
+      background-color: var(--color-secondary);
+
+      transition-property: width;
+
+      content: "";
+    }
+
+    &--active {
+      color: var(--color-secondary);
+
+      &::after {
+        width: 100%;
+      }
+    }
   }
 }
