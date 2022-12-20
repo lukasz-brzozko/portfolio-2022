@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { VARIANTS, VARIANTS_NAMES } from "../../../constants/animations";
 import { BREAKPOINTS } from "../../../constants/breakpoints";
+import { TEXT_VIEWPORT } from "../../../constants/text";
 
 import styles from "./Tabs.module.scss";
 
@@ -126,7 +127,7 @@ function Tabs({ data = null, inner = null }) {
       initial={VARIANTS_NAMES.hidden}
       whileInView={VARIANTS_NAMES.visible}
       variants={VARIANTS}
-      viewport={{ once: false, margin: "0px 0px -20% 0px" }}
+      viewport={TEXT_VIEWPORT}
     >
       {/* Tabs */}
       <motion.ul

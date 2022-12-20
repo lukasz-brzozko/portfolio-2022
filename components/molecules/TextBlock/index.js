@@ -2,6 +2,7 @@ import block from "bem-css-modules";
 import { motion } from "framer-motion";
 
 import { VARIANTS, VARIANTS_NAMES } from "../../../constants/animations";
+import { TEXT_VIEWPORT } from "../../../constants/text";
 
 import styles from "./TextBlock.module.scss";
 
@@ -23,7 +24,7 @@ function TextBlock({ data = null }) {
       initial={VARIANTS_NAMES.hidden}
       whileInView={VARIANTS_NAMES.visible}
       variants={VARIANTS}
-      viewport={{ once: false, margin: "0px 0px -20% 0px" }}
+      viewport={TEXT_VIEWPORT}
     >
       {title && (
         <motion.h2

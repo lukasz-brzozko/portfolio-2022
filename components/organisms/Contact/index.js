@@ -4,6 +4,7 @@ import { useContext, useRef } from "react";
 
 import { VARIANTS, VARIANTS_NAMES } from "../../../constants/animations";
 import { VIEWPORT } from "../../../constants/section";
+import { TEXT_VIEWPORT } from "../../../constants/text";
 import { HeaderContext } from "../../../contexts/HeaderContext";
 import IMG from "../../atoms/IMG";
 import Grid from "../../layout/Grid";
@@ -48,7 +49,7 @@ function Contact({ data = null }) {
               whileInView={VARIANTS_NAMES.visible}
               variants={VARIANTS}
               custom={2}
-              viewport={{ once: false, margin: "0px 0px -20% 0px" }}
+              viewport={TEXT_VIEWPORT}
               href={`mailto:${email}`}
             >
               {email}
