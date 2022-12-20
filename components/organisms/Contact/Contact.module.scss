@@ -6,6 +6,10 @@
 
   min-height: 100vh;
 
+  @include media(0, tablet) {
+    padding-bottom: rv(100);
+  }
+
   &__img-wrapper,
   &__text-block-wrapper {
     grid-column: 1/-1;

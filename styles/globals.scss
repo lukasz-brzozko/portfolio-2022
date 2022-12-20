@@ -21,6 +21,16 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  &.ui-no-scroll {
+    header {
+      @media (hover: hover) {
+        padding-right: 17px;
+      }
+    }
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;
