@@ -4,11 +4,11 @@ import styles from "./Grid.module.scss";
 
 const b = block(styles);
 
-function Grid({ children, cols }) {
+function Grid({ children, cols, className }) {
   const styleAttr = cols ? { "--cols": cols } : null;
 
   return (
-    <div className={b()} style={styleAttr}>
+    <div className={`${b()} ${className}`} style={styleAttr}>
       {children}
     </div>
   );

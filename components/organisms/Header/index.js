@@ -14,21 +14,14 @@ function Header({ data }) {
   const { activeSectionID } = useContext(HeaderContext);
   const { scrollY, scrollYProgress } = useScroll();
 
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [isHeaderTransparent, setIsHeaderTransparent] = useState(true);
+  const [firstLinkContent, setFirstLinkContent] = useState("Start");
 
   useEffect(() => {
     scrollY.onChange((currVal) => {
       const prevVal = scrollY.getPrevious();
 
-      if (currVal > 100) {
-        if (prevVal + 100 > currVal) {
-          setIsHeaderVisible(prevVal > currVal);
-        }
-        setIsHeaderTransparent(false);
-      } else {
-        setIsHeaderTransparent(true);
-      }
+      setIsHeaderTransparent(currVal <= 100);
     });
 
     return () => scrollY.clearListeners();
@@ -56,21 +49,20 @@ function Header({ data }) {
   return (
     <header
       className={`${b("", {
-        active: isHeaderVisible,
         transparent: isHeaderTransparent,
       })} ui-bg--bg-secondary ui-transition`}
     >
       <Inner>
-        <Grid>
+        <Grid className={`${b("grid")}`}>
           {/* Logo */}
-          <div className={`${b("logo")} ui-hide-0-tablet`}>
+          <div className={`${b("logo")}`}>
             <a
               className={`${b("link", {
                 active: activeSectionID === 0,
               })} t-typo-menu`}
               href="#"
             >
-              Łukasz Brzózko
+              {firstLinkContent}
             </a>
           </div>
 
