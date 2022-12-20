@@ -1,8 +1,10 @@
 import block from "bem-css-modules";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 
 import { VARIANTS, VARIANTS_NAMES } from "../../../constants/animations";
+import { VIEWPORT } from "../../../constants/section";
+import { HeaderContext } from "../../../contexts/HeaderContext";
 import IMG from "../../atoms/IMG";
 import Grid from "../../layout/Grid";
 import Inner from "../../layout/Inner";
@@ -16,6 +18,8 @@ const b = block(styles);
 function Contact({ data = null }) {
   const { textBlock, img, email } = data;
 
+  const { setActiveSectionID } = useContext(HeaderContext);
+
   const innerRef = useRef(null);
 
   const IMGElement =
@@ -26,9 +30,11 @@ function Contact({ data = null }) {
     );
 
   return (
-    <section
+    <motion.section
       id="contact"
       className={`${b()} ui-bg--bg-secondary ui-section-padding`}
+      onViewportEnter={() => setActiveSectionID(3)}
+      viewport={VIEWPORT}
     >
       <Inner ref={innerRef}>
         <Grid>
@@ -59,7 +65,7 @@ function Contact({ data = null }) {
           </div>
         </Grid>
       </Inner>
-    </section>
+    </motion.section>
   );
 }
 
