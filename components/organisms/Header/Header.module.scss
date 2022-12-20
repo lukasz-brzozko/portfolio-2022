@@ -2,11 +2,28 @@
 
 .header {
   position: fixed;
-  top: 0;
   left: 0;
   z-index: 10;
 
   width: 100%;
+
+  transform: translateY(-100%);
+
+  @include media(0, tablet) {
+    bottom: 0;
+  }
+
+  @include media(tablet) {
+    top: 0;
+  }
+
+  &--active {
+    transform: translateY(0);
+  }
+
+  &--transparent {
+    background-color: transparent;
+  }
 
   &__nav {
     grid-column: 1/-1;

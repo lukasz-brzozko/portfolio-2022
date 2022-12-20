@@ -1,17 +1,38 @@
 import block from "bem-css-modules";
-import { motion } from "framer-motion";
+import { useScroll } from "framer-motion";
 
+import { HeaderContext } from "../../../contexts/HeaderContext";
 import Grid from "../../layout/Grid";
 import Inner from "../../layout/Inner";
-import { HeaderContext } from "../../../contexts/HeaderContext";
 
+import { useContext, useEffect, useState } from "react";
 import styles from "./Header.module.scss";
-import { useContext } from "react";
 
 const b = block(styles);
 
 function Header({ data }) {
   const { activeSectionID } = useContext(HeaderContext);
+  const { scrollY, scrollYProgress } = useScroll();
+
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [isHeaderTransparent, setIsHeaderTransparent] = useState(true);
+
+  useEffect(() => {
+    scrollY.onChange((currVal) => {
+      const prevVal = scrollY.getPrevious();
+
+      if (currVal > 100) {
+        if (prevVal + 100 > currVal) {
+          setIsHeaderVisible(prevVal > currVal);
+        }
+        setIsHeaderTransparent(false);
+      } else {
+        setIsHeaderTransparent(true);
+      }
+    });
+
+    return () => scrollY.clearListeners();
+  }, [scrollY]);
 
   const { Menu: nav } = data.data.attributes.Menu;
 
@@ -33,7 +54,12 @@ function Header({ data }) {
   });
 
   return (
-    <header className={`${b()} ui-bg--bg-secondary`}>
+    <header
+      className={`${b("", {
+        active: isHeaderVisible,
+        transparent: isHeaderTransparent,
+      })} ui-bg--bg-secondary ui-transition`}
+    >
       <Inner>
         <Grid>
           {/* Logo */}

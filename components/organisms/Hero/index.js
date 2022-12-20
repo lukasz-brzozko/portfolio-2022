@@ -38,7 +38,6 @@ function Hero({ data }) {
   const handleViewportEnter = (e) => {
     scrollY.onChange((latest) => {
       const transition = `${latest * CONSTANTS.scrollTranslateRatio}px`;
-
       setImgYPosition(transition);
     });
   };
