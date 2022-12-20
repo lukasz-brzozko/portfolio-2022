@@ -1,8 +1,10 @@
 import block from "bem-css-modules";
 import { motion, useScroll } from "framer-motion";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { VARIANTS, VARIANTS_NAMES } from "../../../constants/animations";
+import { VIEWPORT } from "../../../constants/section";
+import { HeaderContext } from "../../../contexts/HeaderContext";
 import IMG from "../../atoms/IMG";
 import Overlay from "../../atoms/Overlay";
 import Grid from "../../layout/Grid";
@@ -29,12 +31,13 @@ function Hero({ data }) {
 
   const [imgYPosition, setImgYPosition] = useState(0);
 
+  const { setActiveSectionID } = useContext(HeaderContext);
+
   const { scrollY } = useScroll();
 
   const handleViewportEnter = (e) => {
     scrollY.onChange((latest) => {
       const transition = `${latest * CONSTANTS.scrollTranslateRatio}px`;
-
       setImgYPosition(transition);
     });
   };
@@ -44,7 +47,11 @@ function Hero({ data }) {
   };
 
   return (
-    <section className={b()}>
+    <motion.section
+      className={b()}
+      onViewportEnter={() => setActiveSectionID(0)}
+      viewport={VIEWPORT}
+    >
       <motion.div
         onViewportEnter={handleViewportEnter}
         onViewportLeave={handleViewportLeave}
@@ -109,7 +116,7 @@ function Hero({ data }) {
           </div>
         </Grid>
       </Inner>
-    </section>
+    </motion.section>
   );
 }
 

@@ -158,6 +158,13 @@
   }
 }
 
+@mixin typo-menu{
+  font-weight: font-weight(medium);
+  font-size: rv(16); 
+  font-family: font(main);
+  line-height: 1.7;
+}
+
 @mixin typo-btn {
   font-weight: font-weight(regular);
   font-size: rv(14);

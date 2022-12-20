@@ -1,6 +1,9 @@
 import block from "bem-css-modules";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { useContext, useRef } from "react";
 
+import { VIEWPORT } from "../../../constants/section";
+import { HeaderContext } from "../../../contexts/HeaderContext";
 import IMG from "../../atoms/IMG";
 import Grid from "../../layout/Grid";
 import Inner from "../../layout/Inner";
@@ -15,6 +18,8 @@ const b = block(styles);
 function About({ data = null }) {
   const { textBlock, tabs, img } = data;
 
+  const { setActiveSectionID } = useContext(HeaderContext);
+
   const innerRef = useRef(null);
 
   const IMGElement =
@@ -25,7 +30,12 @@ function About({ data = null }) {
     );
 
   return (
-    <section className={`${b()} ui-bg--bg-secondary ui-section-padding`}>
+    <motion.section
+      id="about"
+      className={`${b()} ui-bg--bg-secondary ui-section-padding ui-overflow`}
+      onViewportEnter={() => setActiveSectionID(1)}
+      viewport={VIEWPORT}
+    >
       <Inner ref={innerRef}>
         <Grid>
           {/* IMG */}
@@ -42,7 +52,7 @@ function About({ data = null }) {
           </div>
         </Grid>
       </Inner>
-    </section>
+    </motion.section>
   );
 }
 

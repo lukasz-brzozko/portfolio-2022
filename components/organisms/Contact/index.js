@@ -1,8 +1,11 @@
 import block from "bem-css-modules";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 
 import { VARIANTS, VARIANTS_NAMES } from "../../../constants/animations";
+import { VIEWPORT } from "../../../constants/section";
+import { TEXT_VIEWPORT } from "../../../constants/text";
+import { HeaderContext } from "../../../contexts/HeaderContext";
 import IMG from "../../atoms/IMG";
 import Grid from "../../layout/Grid";
 import Inner from "../../layout/Inner";
@@ -16,6 +19,8 @@ const b = block(styles);
 function Contact({ data = null }) {
   const { textBlock, img, email } = data;
 
+  const { setActiveSectionID } = useContext(HeaderContext);
+
   const innerRef = useRef(null);
 
   const IMGElement =
@@ -26,7 +31,12 @@ function Contact({ data = null }) {
     );
 
   return (
-    <section className={`${b()} ui-bg--bg-secondary ui-section-padding`}>
+    <motion.section
+      id="contact"
+      className={`${b()} ui-bg--bg-secondary ui-section-padding`}
+      onViewportEnter={() => setActiveSectionID(3)}
+      viewport={VIEWPORT}
+    >
       <Inner ref={innerRef}>
         <Grid>
           {/* Text block */}
@@ -39,7 +49,7 @@ function Contact({ data = null }) {
               whileInView={VARIANTS_NAMES.visible}
               variants={VARIANTS}
               custom={2}
-              viewport={{ once: false, margin: "0px 0px -20% 0px" }}
+              viewport={TEXT_VIEWPORT}
               href={`mailto:${email}`}
             >
               {email}
@@ -56,7 +66,7 @@ function Contact({ data = null }) {
           </div>
         </Grid>
       </Inner>
-    </section>
+    </motion.section>
   );
 }
 

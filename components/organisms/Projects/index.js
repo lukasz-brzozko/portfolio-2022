@@ -1,8 +1,9 @@
 import block from "bem-css-modules";
-// import { VARIANTS, VARIANTS_NAMES } from "../../../constants/animations";
-// import IMG from "../../atoms/IMG";
-import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useContext, useState } from "react";
 
+import { VIEWPORT } from "../../../constants/section";
+import { HeaderContext } from "../../../contexts/HeaderContext";
 import { ProjectContext } from "../../../contexts/ProjectContext";
 import ProjectCard from "../../atoms/ProjectCard";
 import Grid from "../../layout/Grid";
@@ -19,11 +20,8 @@ function Projects({ data }) {
   const { textBlock, projects } = data;
   const { data: projectsList } = projects;
 
+  const { setActiveSectionID } = useContext(HeaderContext);
   const [selectedProjectID, setSelectedProjectID] = useState(null);
-
-  useEffect(() => {
-    console.log(selectedProjectID);
-  }, [selectedProjectID]);
 
   const projectsItems = projectsList.map((project) => {
     const { id } = project;
@@ -42,7 +40,12 @@ function Projects({ data }) {
         setSelectedProjectID,
       }}
     >
-      <section className={`${b()} ui-bg--bg-primary ui-section-padding`}>
+      <motion.section
+        id="portfolio"
+        className={`${b()} ui-bg--bg-primary ui-section-padding`}
+        onViewportEnter={() => setActiveSectionID(2)}
+        viewport={VIEWPORT}
+      >
         <Inner>
           <Grid>
             {/* Text block */}
@@ -59,7 +62,7 @@ function Projects({ data }) {
         <Portal>
           <ProjectModal projects={projectsList} />
         </Portal>
-      </section>
+      </motion.section>
     </ProjectContext.Provider>
   );
 }

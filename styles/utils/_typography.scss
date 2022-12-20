@@ -36,6 +36,10 @@
   @include typo-caption();
 }
 
+.t-typo-menu {
+  @include typo-menu();
+}
+
 .t-typo-btn {
   @include typo-btn();
 }
