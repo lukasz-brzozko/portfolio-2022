@@ -1,4 +1,12 @@
+@use "../../../styles/base/" as *;
+
 .developer {
   width: 100%;
   height: auto;
+
+  @include media(0, tablet) {
+    width: auto;
+    height: rv(310, 600, 1600);
+    margin: 0 auto;
+  }
 }
