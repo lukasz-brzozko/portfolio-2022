@@ -15,7 +15,6 @@ function Header({ data }) {
   const { scrollY, scrollYProgress } = useScroll();
 
   const [isHeaderTransparent, setIsHeaderTransparent] = useState(true);
-  const [firstLinkContent, setFirstLinkContent] = useState("Start");
 
   useEffect(() => {
     scrollY.onChange((currVal) => {
@@ -62,7 +61,8 @@ function Header({ data }) {
               })} t-typo-menu`}
               href="#"
             >
-              {firstLinkContent}
+              <span className="ui-hide-0-tablet">Łukasz Brzózko</span>
+              <span className="ui-hide-tablet">Start</span>
             </a>
           </div>
 
