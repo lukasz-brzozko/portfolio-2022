@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 import { DeveloperContext } from "../../../contexts/DeveloperContext";
-import DesktopScreen from "./components/desktopScreen";
+import DesktopScreen from "./components/DesktopScreen";
 import Laptop from "./components/Laptop";
 import Mug from "./components/Mug";
 
