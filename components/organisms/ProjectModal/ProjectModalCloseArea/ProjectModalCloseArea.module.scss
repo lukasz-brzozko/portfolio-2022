@@ -1,0 +1,24 @@
+.close-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgb(var(--color-black-rgb));
+    opacity: calc(1 - (var(--progress, 0) - 0.2));
+
+    content: "";
+  }
+
+  &__text {
+    transform: translateY(calc(-30vh + (30vh * var(--progress, 0))));
+  }
+}

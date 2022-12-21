@@ -1,0 +1,77 @@
+@use "../../../styles/base/" as *;
+
+.hero {
+  position: relative;
+
+  display: grid;
+  height: 100vh;
+  overflow: hidden;
+  place-items: center;
+
+  &__text-block {
+    position: relative;
+
+    grid-column: 1/-1;
+
+    color: color(t-primary);
+
+    @include media(tablet) {
+      grid-column: 1 / span 6;
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: rv(10);
+  }
+
+  &__title {
+    & > * {
+      &:last-child {
+        margin-top: rv(20);
+
+        @include media(tablet) {
+          margin-top: rv(15);
+        }
+      }
+    }
+  }
+
+  &__img-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    transform: translateY(var(--position-y));
+  }
+
+  &__img {
+    display: block;
+
+    &--desktop {
+      @include media(0, tablet) {
+        display: none;
+      }
+    }
+
+    &--mobile {
+      @include media(tablet) {
+        display: none !important;
+      }
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--color);
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,117 @@
+@use "../../../styles/base/" as *;
+
+.header {
+  position: fixed;
+  left: 0;
+  z-index: 10;
+
+  width: 100%;
+
+  @include media(0, tablet) {
+    bottom: 0;
+
+    border-top: 1px solid rgb(var(--color-t-secondary-rgb) / 25%);
+  }
+
+  @include media(tablet) {
+    top: 0;
+  }
+
+  &--transparent {
+    @include media(tablet) {
+      background-color: transparent;
+    }
+  }
+
+  &__grid {
+    @include media(0, tablet) {
+      display: flex;
+      gap: 0;
+      justify-content: center;
+    }
+  }
+
+  &__nav {
+    grid-column: 1/-1;
+
+    @include media(tablet) {
+      grid-column: 6/-1;
+    }
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+
+    @include media(0, tablet) {
+      justify-content: center;
+    }
+
+    @include media(tablet) {
+      justify-content: flex-end;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    grid-column: 1/-1;
+    align-items: center;
+
+    @include media(0, tablet) {
+      margin-right: rv(30);
+    }
+
+    @include media(tablet) {
+      grid-column: 1/span 3;
+    }
+  }
+
+  &__item {
+    margin: 0 rv(15);
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__link {
+    @include transition(500ms);
+
+    display: inline-block;
+    padding: rv(20) 0;
+
+    color: var(--t-primary);
+
+    @include media(0, tablet) {
+      font-size: 13px;
+    }
+
+    &::after {
+      @include transition(300ms, cubic-bezier(0, 0.41, 0, 1.4));
+
+      display: block;
+      width: 0;
+      height: rv(2);
+
+      margin-top: rv(3);
+
+      background-color: var(--color-secondary);
+
+      transition-property: width;
+
+      content: "";
+    }
+
+    &--active {
+      color: var(--color-secondary);
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+@use "../../../styles/base/" as *;
+
+.close-btn {
+  position: absolute;
+  top: 5vh;
+  right: var(--inner-padding);
+  z-index: 1;
+
+  width: rv(35);
+  height: rv(35);
+
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: rv(20);
+    height: rv(2);
+
+    background-color: currentcolor;
+    border-radius: rv(10);
+
+    content: "";
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}

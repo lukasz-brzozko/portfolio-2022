@@ -1,0 +1,28 @@
+@use "../../../styles/base/" as *;
+
+.projects {
+  min-height: 100vh;
+
+  &__text-block-wrapper {
+    grid-column: 1/-1;
+    margin-bottom: rv(40, 50);
+
+    @include media(tablet) {
+      grid-column: 3/-3;
+    }
+  }
+
+  &__list {
+    @include media(0, tablet) {
+      row-gap: 40px;
+    }
+  }
+
+  &__project {
+    grid-column: 1/-1;
+
+    @include media(tablet) {
+      grid-column: span 4;
+    }
+  }
+}

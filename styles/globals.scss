@@ -1,0 +1,63 @@
+@use "./base" as *;
+@use "./utils" as *;
+
+::selection {
+  color: color(t-primary);
+
+  background-color: color(secondary);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+
+  color: color(t-primary);
+
+  font-family: font(main);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  &.ui-no-scroll {
+    header {
+      @media (hover: hover) {
+        padding-right: 17px;
+      }
+    }
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    color: white;
+  }
+}
