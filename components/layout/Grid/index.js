@@ -8,7 +8,7 @@ function Grid({ children, cols, className }) {
   const styleAttr = cols ? { "--cols": cols } : null;
 
   return (
-    <div className={`${b()} ${className}`} style={styleAttr}>
+    <div className={`${b()} ${className ?? ""}`} style={styleAttr}>
       {children}
     </div>
   );
