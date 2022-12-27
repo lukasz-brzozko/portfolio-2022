@@ -6,7 +6,6 @@ const nextConfig = {
   images: {
     loader: "akamai",
     path: "",
-    // domains: ["localhost"],
   },
 
   webpack(config) {
