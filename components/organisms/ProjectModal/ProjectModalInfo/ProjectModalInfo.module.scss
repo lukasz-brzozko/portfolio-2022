@@ -43,6 +43,10 @@
     padding-top: 40px;
 
     @include media(tablet) {
+      position: sticky;
+      top: 0;
+      left: 0;
+
       padding-top: rv(40, 80);
     }
   }
