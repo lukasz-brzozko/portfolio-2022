@@ -6,7 +6,6 @@ const nextConfig = {
   images: {
     loader: "akamai",
     path: "./",
-    //
   },
 
   webpack(config) {
