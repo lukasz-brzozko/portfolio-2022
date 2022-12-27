@@ -17,8 +17,6 @@ const b = block(styles);
 function ProjectModalInfo({ project }) {
   const { badges, gallery, info, showcaseLink, repoLink } = project?.attributes;
 
-  // console.log(project);
-
   const badgesList = badges.map(({ id, text }) => (
     <li key={id}>
       <Badge>{text}</Badge>

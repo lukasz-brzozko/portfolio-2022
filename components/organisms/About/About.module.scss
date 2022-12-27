@@ -33,6 +33,11 @@
     @include media(tablet) {
       grid-column: 6/-1;
     }
+
+    @include media(desktop) {
+      grid-column: 7/-1;
+      max-width: 90%;
+    }
   }
 
   &__tabs-wrapper {

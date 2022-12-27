@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: "/portfolio-2022",
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    loader: "default",
-    domains: ["localhost"],
+    loader: "akamai",
+    path: "./",
+    //
   },
 
   webpack(config) {

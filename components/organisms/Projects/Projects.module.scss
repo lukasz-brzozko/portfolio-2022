@@ -13,8 +13,10 @@
   }
 
   &__list {
-    @include media(0, tablet) {
-      row-gap: 40px;
+    row-gap: 40px;
+
+    @include media(tablet) {
+      row-gap: rv(20, 60);
     }
   }
 
