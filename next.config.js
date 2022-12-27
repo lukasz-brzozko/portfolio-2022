@@ -3,8 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    loader: "default",
-    domains: ["localhost"],
+    loader: "akamai",
+    path: "",
+    // domains: ["localhost"],
   },
 
   webpack(config) {
