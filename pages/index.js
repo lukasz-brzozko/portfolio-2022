@@ -47,6 +47,8 @@ export async function getStaticProps() {
     },
   });
 
+  homepage.data.attributes.myProjects.projects.data.reverse();
+
   const navigation = await fetchAPI("/navigation", {
     populate: { Menu: { populate: { Menu: true } } },
   });
