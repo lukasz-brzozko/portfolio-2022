@@ -62,7 +62,9 @@ function ProjectCard({ data = null, onClick }) {
       </motion.div>
 
       <motion.div className={`${b("text-block")} ui-relative`}>
-        <motion.h4 className={`${b("title")} t-typo-h4`}>{title}</motion.h4>
+        <motion.h4 className={`${b("title")} t-typo-h4 t-center`}>
+          {title}
+        </motion.h4>
         <Button>Zobacz więcej</Button>
       </motion.div>
     </motion.div>

@@ -23,7 +23,11 @@
   &__project {
     grid-column: 1/-1;
 
-    @include media(tablet) {
+    @include media(mobile-sm) {
+      grid-column: span 6;
+    }
+
+    @include media(tablet-lg) {
       grid-column: span 4;
     }
   }

@@ -130,14 +130,14 @@ function Tabs({ data = null, inner = null }) {
       viewport={TEXT_VIEWPORT}
     >
       {/* Tabs */}
-      <motion.ul
-        custom={2}
-        variants={VARIANTS}
-        className={`${b("tab-names-container")} ui-hide-scrollbar ui-list`}
-        ref={tabNameList}
-      >
-        {tabNames}
-      </motion.ul>
+      <motion.div custom={2} variants={VARIANTS}>
+        <motion.ul
+          className={`${b("tab-names-container")} ui-hide-scrollbar ui-list`}
+          ref={tabNameList}
+        >
+          {tabNames}
+        </motion.ul>
+      </motion.div>
 
       {/* Tab content */}
       <motion.div
