@@ -6,10 +6,10 @@ const nextConfig = {
     loader: "default",
     domains: ["localhost"],
   },
-
-  i18n: {
-    locales: ["pl"],
-    defaultLocale: "pl",
+  experimental: {
+    images: {
+      unoptimized: true,
+    },
   },
 
   webpack(config) {
