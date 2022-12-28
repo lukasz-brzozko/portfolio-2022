@@ -23,7 +23,7 @@ function Projects({ data }) {
   const { setActiveSectionID } = useContext(HeaderContext);
   const [selectedProjectID, setSelectedProjectID] = useState(null);
 
-  const projectsItems = projectsList.map((project) => {
+  const projectsItems = projectsList.reverse().map((project) => {
     const { id } = project;
 
     return (
