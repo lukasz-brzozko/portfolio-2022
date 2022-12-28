@@ -1,3 +1,4 @@
+import PageHead from "../components/organisms/PageHead";
 import "../styles/base/cssVars/_index.scss";
 import "../styles/globals.scss";
 
