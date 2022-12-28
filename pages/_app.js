@@ -1,4 +1,4 @@
-import "./firebase";
+import "../helpers/firebase";
 
 import PageHead from "../components/organisms/PageHead";
 
