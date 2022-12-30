@@ -108,17 +108,19 @@ function Tabs({ data = null, inner = null }) {
 
     const tabContentEl = (
       <motion.div
-        className={`${b("tab-content")} t-typo-p2 ui-color--t-secondary`}
+        className={`${b("tab-content", {
+          active: isActive,
+        })} t-typo-p2 ui-color--t-secondary`}
         key={id}
         variants={TAB_VARIANTS}
         initial="contentInitial"
-        animate="contentActive"
+        animate={isActive ? "contentActive" : "contentInitial"}
         transition={TRANSITIONS.content}
         dangerouslySetInnerHTML={{ __html: tabContent }}
       ></motion.div>
     );
 
-    return isActive && tabContentEl;
+    return tabContentEl;
   });
 
   return (

@@ -59,10 +59,24 @@
   }
 
   &__tab-contents-container {
+    display: grid;
     margin-top: rv(20);
   }
 
   &__tab-content {
+    grid-row: 1;
+    grid-column: 1;
+
+    @include media(0, tablet) {
+      display: none;
+    }
+
+    &--active {
+      @include media(0, tablet) {
+        display: block;
+      }
+    }
+
     a {
       @include transition;
 
