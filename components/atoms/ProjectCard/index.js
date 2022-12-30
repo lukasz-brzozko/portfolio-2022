@@ -2,6 +2,7 @@ import block from "bem-css-modules";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 
+import { TEXT_VIEWPORT } from "../../../constants/text";
 import { ProjectContext } from "../../../contexts/ProjectContext";
 import Button from "../Button";
 import IMG from "../IMG";
@@ -20,6 +21,11 @@ function ProjectCard({ data = null, onClick }) {
     duration: 0.25,
   };
 
+  const CARD_VARIANTS = {
+    initial: { opacity: 0, y: 30 },
+    active: { opacity: 1, y: 0 },
+  };
+
   const IMG_INNER_VARIANTS = {
     initial: { scale: 1.13 },
     hover: { scale: 1 },
@@ -36,36 +42,44 @@ function ProjectCard({ data = null, onClick }) {
 
   return (
     <motion.div
-      className={`${b()} ui-relative`}
-      onClick={() => setSelectedProjectID(id)}
-      whileHover="hover"
-      whileTap="hover"
+      className={`${b()}`}
       initial="initial"
+      whileInView="active"
+      viewport={TEXT_VIEWPORT}
+      variants={CARD_VARIANTS}
     >
       <motion.div
-        className={`${b("img-wrapper")} ui-relative ui-overflow`}
-        variants={IMG_WRAPPER_VARIANTS}
-        transition={TRANSITION}
+        className={`${b("inner")} ui-relative`}
+        onClick={() => setSelectedProjectID(id)}
+        whileHover="hover"
+        whileTap="hover"
+        initial="initial"
       >
         <motion.div
-          className={`${b("img-inner")}`}
-          variants={IMG_INNER_VARIANTS}
+          className={`${b("img-wrapper")} ui-relative ui-overflow`}
+          variants={IMG_WRAPPER_VARIANTS}
           transition={TRANSITION}
         >
-          <IMG image={img} />
+          <motion.div
+            className={`${b("img-inner")}`}
+            variants={IMG_INNER_VARIANTS}
+            transition={TRANSITION}
+          >
+            <IMG image={img} />
+          </motion.div>
+          <motion.div
+            className={`${b("img-overlay")}`}
+            variants={IMG_OVERLAY}
+            transition={TRANSITION}
+          ></motion.div>
         </motion.div>
-        <motion.div
-          className={`${b("img-overlay")}`}
-          variants={IMG_OVERLAY}
-          transition={TRANSITION}
-        ></motion.div>
-      </motion.div>
 
-      <motion.div className={`${b("text-block")} ui-relative`}>
-        <motion.h4 className={`${b("title")} t-typo-h4 t-center`}>
-          {title}
-        </motion.h4>
-        <Button>Zobacz więcej</Button>
+        <motion.div className={`${b("text-block")} ui-relative`}>
+          <motion.h4 className={`${b("title")} t-typo-h4 t-center`}>
+            {title}
+          </motion.h4>
+          <Button>Zobacz więcej</Button>
+        </motion.div>
       </motion.div>
     </motion.div>
   );

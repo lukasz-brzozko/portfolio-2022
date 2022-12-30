@@ -1,10 +1,12 @@
 @use "../../../styles/base/" as *;
 
 .project-card {
-  height: get-vh(600, "desktop");
-  padding: rv(40);
-
   cursor: pointer;
+
+  &__inner {
+    height: get-vh(600, "desktop");
+    padding: rv(40);
+  }
 
   &__text-block {
     z-index: 1;
